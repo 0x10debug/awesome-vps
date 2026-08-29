@@ -12,33 +12,41 @@ Thanks for your interest in contributing! This is a community-curated list of VP
 ## Entry Format
 
 ```markdown
-- **[Tool Name](https://github.com/user/repo)** - One-line description of what it does. `Language` 🟢
+- 🟢 [Tool Name](https://github.com/user/repo) - One-line description of what it does. `Language`
 ```
+
+The leading emoji is an **activity marker** (see below). Use 🟢 for new entries; `scripts/update-metadata.sh` will correct it on the next run based on the repo's real activity.
 
 ### Fields
 
 | Field | Requirement | Example |
 |---|---|---|
+| **Activity marker** | One of 🟢 🟡 🔴 ⚫ (see levels below) | `🟢` |
 | **Name** | Link to the official repo or website | `[Ollama](https://github.com/ollama/ollama)` |
 | **Description** | One sentence, original wording (don't copy the tool's README) | `Run Llama, Mistral, Phi locally.` |
 | **Language** | Primary implementation language | `` `Go` ``, `` `Shell` ``, `` `Python` `` |
-| **Difficulty** | One of 🟢 🟡 🔴 | See levels below |
 
-### Difficulty Levels
+### Activity Markers
 
-- 🟢 **Beginner** — One command to install and use, minimal configuration needed
-- 🟡 **Intermediate** — Requires configuration or understanding of concepts
-- 🔴 **Advanced** — Requires deep understanding of underlying systems
+Activity markers reflect the health of the tool's source repository, not its difficulty:
+
+- 🟢 **Active** — commit within the last 6 months
+- 🟡 **Maintained** — commit within the last 6–12 months
+- 🔴 **Stagnant** — no commit in 12+ months
+- ⚫ **Archived** — repository is archived/read-only
+
+Markers are refreshed automatically by `scripts/update-metadata.sh` (GitHub API). Tools that become 🔴 or ⚫ are moved to the **Archived / Historical** section.
 
 ## Guidelines
 
 ### Must
 
 - ✅ Tool is **open-source** (or has a free self-hostable tier)
-- ✅ Tool is **actively maintained** (commit within last 12 months)
+- ✅ Tool is **actively maintained** (commit within last 12 months) — otherwise note it in the Archived / Historical section
 - ✅ Description is **original** — write it in your own words
 - ✅ Tool is placed in the **correct category**
 - ✅ Entry added to **both** English and Chinese READMEs
+- ✅ Each category keeps **3–15 tools**; split or merge categories if needed
 
 ### Must Not
 
@@ -63,9 +71,15 @@ Thanks for your interest in contributing! This is a community-curated list of VP
 
 ## Reporting Issues
 
-- **Broken link** — open an issue with `[Broken Link]` in the title
+- **Broken link** — open an issue with `[Broken Link]` in the title, or run `./scripts/validate-links.sh`
 - **Miscategorized tool** — open an issue suggesting the correct category
-- **Outdated tool** — open an issue if a tool is no longer maintained
+- **Outdated tool** — open an issue if a tool is no longer maintained; it should move to Archived / Historical
+
+## Scripts
+
+- `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite READMEs). Requires `gh auth` or `GITHUB_TOKEN`.
+- `scripts/validate-links.sh` — verify all README links are reachable (`--timeout SECONDS`). Exits 1 on broken links.
+- `scripts/check-links.sh` — legacy link checker.
 
 ## Questions?
 
