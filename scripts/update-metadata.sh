@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-# update-metadata.sh — Query GitHub API for repo activity and update README activity markers
+# update-metadata.sh — Query GitHub API for repo activity and update activity markers
 #
 # Usage:
-#   ./scripts/update-metadata.sh --check    # Check only, print report, do not modify README
-#   ./scripts/update-metadata.sh --update   # Update activity markers in README.md and README.zh.md
+#   ./scripts/update-metadata.sh --check    # Check only, print report, do not modify anything
+#   ./scripts/update-metadata.sh --update   # Update activity_status in data/tools.yaml
+#
+# data/tools.yaml is the single source of truth. After --update, regenerate
+# the READMEs with: ./scripts/generate-readme.sh --lang all
 #
 # Activity markers:
 #   🟢 Active    — commit within the last 6 months
@@ -18,15 +21,16 @@ set -euo pipefail
 
 MODE=""
 REPORT="/tmp/awesome-vps-metadata-report.txt"
-README_FILES=("README.md" "README.zh.md")
+DATA_FILE="data/tools.yaml"
 ACTIVE_DAYS=180
 MAINTAINED_DAYS=365
 
 usage() {
     cat <<EOF
 Usage: $0 --check | --update
-  --check   Query GitHub API and print a report; do not modify README files.
-  --update  Query GitHub API and rewrite activity markers in README files.
+  --check   Query GitHub API and print a report; do not modify anything.
+  --update  Query GitHub API and rewrite activity_status in data/tools.yaml.
+            Re-run ./scripts/generate-readme.sh --lang all afterwards to refresh READMEs.
 EOF
     exit 1
 }
@@ -103,28 +107,23 @@ except Exception:
     fi
 }
 
-# Collect unique owner/repo from all README files (excluding fenced code blocks).
+# Collect unique owner/repo from the YAML data source (data/tools.yaml).
+# Only github.com URLs can be queried via the GitHub API; non-github tools
+# (official sites, docs) are skipped and keep their existing activity_status.
+if [ ! -f "$DATA_FILE" ]; then
+    echo "ERROR: data source not found: $DATA_FILE" >&2
+    exit 2
+fi
 declare -a REPOS=()
 declare -A SEEN=()
-for file in "${README_FILES[@]}"; do
-    [ -f "$file" ] || continue
-    # awk prints github.com owner/repo URLs only when outside ``` fences.
-    while IFS= read -r repo; do
-        [ -z "$repo" ] && continue
-        if [ -z "${SEEN[$repo]:-}" ]; then
-            SEEN[$repo]=1
-            REPOS+=("$repo")
-        fi
-    done < <(awk '
-        /^```/ { fence = !fence; next }
-        fence { next }
-        {
-            while (match($0, /https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/)) {
-                print substr($0, RSTART + 19, RLENGTH - 19)
-                $0 = substr($0, RSTART + RLENGTH)
-            }
-        }' "$file" | sort -u)
-done
+while IFS= read -r repo; do
+    [ -z "$repo" ] && continue
+    if [ -z "${SEEN[$repo]:-}" ]; then
+        SEEN[$repo]=1
+        REPOS+=("$repo")
+    fi
+done < <(grep -oE 'https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' "$DATA_FILE" \
+    | sed 's#https://github.com/##' | sort -u)
 
 # Query metadata for each repo.
 declare -A META_MARKER
@@ -170,46 +169,76 @@ if [ "$MODE" = "check" ]; then
     exit 0
 fi
 
-# --update: rewrite the leading marker on every tool line in each README.
-# Tool line shape: ^- <OLD_MARKER> [Name](https://github.com/owner/repo) ...
-# We replace <OLD_MARKER> with the freshly computed one.
-UPDATED_LINES=0
-for file in "${README_FILES[@]}"; do
-    [ -f "$file" ] || continue
-    tmp="${file}.tmp-meta.$$"
-    : > "$tmp"
-    in_fence=0
-    while IFS= read -r line || [ -n "$line" ]; do
-        # Track fenced code blocks (``` ... ```); skip tool-line rewriting inside them.
-        case "$line" in
-            '```'*) in_fence=$((1 - in_fence)); printf '%s\n' "$line" >> "$tmp"; continue ;;
-        esac
-        if [ "$in_fence" -eq 1 ]; then
-            printf '%s\n' "$line" >> "$tmp"
-            continue
-        fi
-        # Match a tool entry whose link points to a github.com owner/repo.
-        # Shape: "- <marker> [Name](https://github.com/owner/repo) ..."
-        if [[ "$line" =~ ^-\ (🟢|🟡|🔴|⚫)\ \[ ]]; then
-            repo=$(printf '%s' "$line" | grep -oE 'https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+' | head -1 | sed 's#https://github.com/##' || true)
-            [ -z "$repo" ] && { printf '%s\n' "$line" >> "$tmp"; continue; }
-            new_marker="${META_MARKER[$repo]:-}"
-            if [ -n "$new_marker" ]; then
-                rest="${line#*- }"
-                rest="${rest#🟢 }"
-                rest="${rest#🟡 }"
-                rest="${rest#🔴 }"
-                rest="${rest#⚫ }"
-                printf -- '- %s %s\n' "$new_marker" "$rest" >> "$tmp"
-                UPDATED_LINES=$((UPDATED_LINES + 1))
-                continue
-            fi
-        fi
-        printf '%s\n' "$line" >> "$tmp"
-    done < "$file"
-    mv "$tmp" "$file"
+# --update: rewrite the activity_status field in data/tools.yaml for every
+# tool whose GitHub repo was queried. Comments and formatting are preserved by
+# doing a targeted, line-based replacement (only the `activity_status:` line
+# that follows a matching `url:` line is rewritten).
+emoji_to_status() {
+    case "$1" in
+        🟢) echo "active" ;;
+        🟡) echo "maintained" ;;
+        🔴) echo "stagnant" ;;
+        ⚫) echo "archived" ;;
+        *)  echo "active" ;;
+    esac
+}
+
+# Build a "repo<TAB>status" mapping for the Python rewriter.
+MAP_FILE="$(mktemp)"
+trap 'rm -f "$MAP_FILE"' EXIT
+for repo in "${REPOS[@]}"; do
+    marker="${META_MARKER[$repo]:-}"
+    [ -z "$marker" ] && continue
+    status=$(emoji_to_status "$marker")
+    printf '%s\t%s\n' "$repo" "$status" >> "$MAP_FILE"
 done
 
+python3 - "$DATA_FILE" "$MAP_FILE" <<'PYEOF'
+import re
+import sys
+
+data_file, map_file = sys.argv[1], sys.argv[2]
+
+# repo -> new activity_status word
+status_by_repo = {}
+with open(map_file, encoding="utf-8") as f:
+    for line in f:
+        line = line.rstrip("\n")
+        if not line:
+            continue
+        repo, status = line.split("\t", 1)
+        status_by_repo[repo] = status
+
+with open(data_file, encoding="utf-8") as f:
+    lines = f.readlines()
+
+# Walk the file; track the github owner/repo of the current tool block and
+# rewrite the next `activity_status:` line that belongs to it.
+current_repo = None
+updated = 0
+url_re = re.compile(r'^\s*url:\s*https://github\.com/([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)')
+status_re = re.compile(r'^(\s*activity_status:\s*)(\S+)')
+
+for i, line in enumerate(lines):
+    m = url_re.match(line)
+    if m:
+        current_repo = m.group(1)
+        continue
+    if current_repo and current_repo in status_by_repo:
+        sm = status_re.match(line)
+        if sm:
+            new_status = status_by_repo[current_repo]
+            if sm.group(2) != new_status:
+                lines[i] = f"{sm.group(1)}{new_status}\n"
+                updated += 1
+            current_repo = None  # consume; next status belongs to this block
+
+with open(data_file, "w", encoding="utf-8") as f:
+    f.writelines(lines)
+
+print(f"Updated {updated} activity_status field(s) in {data_file}")
+PYEOF
+
 echo ""
-echo "Updated $UPDATED_LINES tool entries across ${#README_FILES[@]} README files."
+echo "Next step: regenerate READMEs with ./scripts/generate-readme.sh --lang all"
 echo "Report saved to $REPORT"

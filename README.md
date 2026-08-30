@@ -232,18 +232,25 @@ Together they cover the full VPS lifecycle: **bootstrap → harden → deploy �
 Contributions are welcome! To add a tool:
 
 1. Fork this repository
-2. Add the tool to the appropriate category in both `README.md` and `README.zh.md`
-3. Follow the entry format (see below)
+2. Add the tool to `data/tools.yaml` (the single source of truth)
+3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md` and `README.zh.md`
 4. Run `./scripts/validate-links.sh` to confirm links are reachable
 5. Submit a pull request
 
-### Entry Format
+### Entry Format (YAML)
 
-```markdown
-- 🟢 [Tool Name](https://github.com/user/repo) - One-line description of what it does. `Language`
+```yaml
+- name: Tool Name
+  url: https://github.com/user/repo
+  category: deployment        # one of the category ids in data/tools.yaml
+  language: Go                # primary implementation language
+  activity_status: active     # active | maintained | stagnant | archived
+  description:
+    en: "One-line description of what it does."
+    zh: "一句话描述它的功能。"
 ```
 
-The leading emoji is an **activity marker**, refreshed automatically by `scripts/update-metadata.sh`. Use 🟢 for new entries; the script will correct it on the next run if the repo is less active.
+The `activity_status` field maps to an **activity marker**, refreshed automatically by `scripts/update-metadata.sh`. Use `active` (🟢) for new entries; the script will correct it on the next run if the repo is less active.
 
 ### Activity Markers
 
@@ -259,12 +266,13 @@ Tools that become 🔴 or ⚫ are moved to the [Archived / Historical](#-archive
 - Tools must be open-source (or have a free self-hostable tier)
 - Description must be original (don't copy the tool's README)
 - Place in the correct category
-- Add to both English and Chinese READMEs
+- Provide both `en` and `zh` descriptions
 - Each category should contain 3–15 tools; split or merge categories if needed
 
 ### Scripts
 
-- `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite READMEs)
+- `scripts/generate-readme.sh` — render README.md / README.zh.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
+- `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite YAML + READMEs)
 - `scripts/validate-links.sh` — verify all README links are reachable (`--timeout SECONDS`)
 - `scripts/check-links.sh` — legacy link checker
 

@@ -1,0 +1,80 @@
+# update-metadata.yml — Monthly refresh of activity markers.
+#
+# Runs scripts/update-metadata.sh --update to query the GitHub API for each
+# repo's last commit / archived state, then rewrites the activity markers in
+# data/tools.yaml and regenerates the READMEs. If anything changed, a pull
+# request is opened automatically so a human can review before merging.
+
+name: Update Activity Metadata
+
+on:
+  schedule:
+    # The 1st of every month at 03:00 UTC.
+    - cron: "0 3 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-metadata
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install --no-input pyyaml
+
+      - name: Configure git identity
+        run: |
+          git config user.name "0x10debug"
+          git config user.email "0x10debug@protonmail.com"
+
+      - name: Refresh activity markers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./scripts/update-metadata.sh --update
+
+      - name: Regenerate READMEs from YAML
+        run: ./scripts/generate-readme.sh --lang all
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain data/tools.yaml README.md README.zh.md)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request with updates
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(automation): refresh activity markers (monthly)"
+          title: "chore: refresh activity markers (monthly run)"
+          body: |
+            Automated monthly refresh of activity markers.
+
+            - `scripts/update-metadata.sh --update` queried the GitHub API for every repo.
+            - `scripts/generate-readme.sh --lang all` regenerated `README.md` / `README.zh.md` from `data/tools.yaml`.
+
+            Review the marker changes before merging.
+          branch: chore/update-activity-markers
+          branch-suffix: timestamp
+          labels: automated, metadata
+          assignees: 0x10debug

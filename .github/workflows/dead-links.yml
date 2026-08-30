@@ -1,0 +1,53 @@
+# dead-links.yml — Weekly dead-link check for the Awesome VPS READMEs.
+#
+# Runs scripts/validate-links.sh against every URL in README.md / README.zh.md.
+# On failure, opens (or updates) a tracking issue so maintainers can fix broken
+# links. Also supports manual triggers via workflow_dispatch.
+
+name: Dead Link Check
+
+on:
+  schedule:
+    # Every Monday at 03:00 UTC (low-traffic window).
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+concurrency:
+  group: dead-links
+  cancel-in-progress: false
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate links
+        id: validate
+        run: |
+          ./scripts/validate-links.sh --timeout 20 2>&1 | tee link-report.txt
+        continue-on-error: true
+
+      - name: Report status
+        id: status
+        if: always()
+        run: |
+          if [ -f link-report.txt ] && grep -q "Failed: 0" link-report.txt; then
+            echo "result=ok" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=broken" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create or update issue on failure
+        if: steps.status.outputs.result == 'broken'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Broken links detected by weekly dead-link check"
+          content-filepath: link-report.txt
+          labels: broken-link, automated
+          assignees: 0x10debug

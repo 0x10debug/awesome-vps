@@ -1,0 +1,74 @@
+# awesome-lint.yml — CI checks for Awesome VPS pull requests.
+#
+# Runs three layers of quality checks on every PR touching the list:
+#   1. awesome-lint  — README format compliance (sindresorhus/awesome-lint)
+#   2. YAML sync     — READMEs must match data/tools.yaml (generate-readme --check)
+#   3. Metadata      — activity markers must be fresh (update-metadata --check)
+# A failing job blocks the PR from being merged.
+
+name: awesome-lint
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "README.zh.md"
+      - "data/tools.yaml"
+      - "scripts/**"
+      - ".github/workflows/awesome-lint.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  awesome-lint:
+    name: awesome-lint (README format)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run awesome-lint
+        run: npx --yes awesome-lint README.md
+
+  yaml-sync:
+    name: YAML data source sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install --no-input pyyaml
+
+      - name: Verify READMEs match data/tools.yaml
+        run: ./scripts/generate-readme.sh --check
+
+  metadata-check:
+    name: Activity markers fresh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check activity markers via GitHub API
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./scripts/update-metadata.sh --check
