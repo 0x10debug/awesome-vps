@@ -122,6 +122,7 @@ A curated list of tools and resources for VPS users—from initial setup and sec
 ## Table of Contents
 
 - [🚀 Getting Started Path](#-getting-started-path)
+- [📊 Quick Navigation](#-quick-navigation)
 - [🔧 Initialization & Setup](#-initialization--setup)
 - [🛡️ Hardening & Security](#-hardening--security)
 - [🌐 Network & Proxy](#-network--proxy)
@@ -208,6 +209,7 @@ Check your configuration for weaknesses. Are your SSH settings compliant? Are yo
 ## 目录
 
 - [🚀 新手引导路径](#-新手引导路径)
+- [📊 快速导航](#-快速导航)
 - [🔧 初始化与设置](#-初始化与设置)
 - [🛡️ 加固与安全](#-加固与安全)
 - [🌐 网络与反代](#-网络与反代)
@@ -424,14 +426,159 @@ def render_category(cat, lang):
     return "\n".join(lines)
 
 
+# Anchor slug for a category title (GitHub-style: lowercase, spaces→hyphens,
+# emoji stripped, punctuation removed).
+def anchor_slug(emoji, title):
+    import re
+    s = f"{emoji} {title}"
+    s = re.sub(r'[^\w\s-]', '', s, flags=re.UNICODE)
+    s = s.strip().lower().replace(' ', '-')
+    s = re.sub(r'-+', '-', s)
+    return s
+
+
+# Short "what it covers" description for the quick-nav table, per category id.
+# These are concise summaries distinct from the full intro text.
+CATEGORY_SUMMARIES = {
+    "init": {
+        "en": "First minutes after getting a fresh server",
+        "zh": "拿到新服务器后的最初几分钟",
+    },
+    "hardening": {
+        "en": "SSH, firewall, fail2ban, baseline hardening",
+        "zh": "SSH、防火墙、fail2ban、基线加固",
+    },
+    "network": {
+        "en": "Reverse proxy, SSL, tunneling, DNS",
+        "zh": "反向代理、SSL、隧道、DNS",
+    },
+    "deployment": {
+        "en": "Docker Compose recipes and app suites",
+        "zh": "Docker Compose 食谱和应用套件",
+    },
+    "monitoring": {
+        "en": "Uptime, metrics, logs, alerting",
+        "zh": "可用性、指标、日志、告警",
+    },
+    "backup": {
+        "en": "Encrypted backup, restore drills, 3-2-1",
+        "zh": "加密备份、恢复演练、3-2-1 策略",
+    },
+    "ai": {
+        "en": "Ollama, Open WebUI, RAG, LiteLLM",
+        "zh": "Ollama、Open WebUI、RAG、LiteLLM",
+    },
+    "audit": {
+        "en": "CIS benchmark, Lynis, drift detection",
+        "zh": "CIS 基线、Lynis、漂移检测",
+    },
+    "archived": {
+        "en": "Historical tools no longer actively maintained",
+        "zh": "已不再活跃维护的历史工具",
+    },
+    "ecosystem": {
+        "en": "Our integrated tool suite",
+        "zh": "我们的集成工具套件",
+    },
+}
+
+
+def render_quick_nav(lang):
+    """Generate a compact navigation table with per-category tool counts."""
+    lines = []
+    if lang == "en":
+        lines.append("## 📊 Quick Navigation")
+        lines.append("")
+        lines.append("| Category | Tools | What it covers |")
+        lines.append("|---|---|---|")
+    else:
+        lines.append("## 📊 快速导航")
+        lines.append("")
+        lines.append("| 分类 | 工具数 | 覆盖范围 |")
+        lines.append("|---|---|---|")
+
+    total = 0
+    active_cats = 0
+    archived_cats = 0
+    for cat in categories:
+        count = len(by_cat[cat["id"]])
+        total += count
+        if cat["id"] == "archived":
+            archived_cats += 1
+        else:
+            active_cats += 1
+        emoji = cat["emoji"]
+        title = loc(cat["title"], lang)
+        slug = anchor_slug(emoji, title)
+        summary = CATEGORY_SUMMARIES.get(cat["id"], {}).get(lang, loc(cat["intro"], lang))
+        lines.append(f"| [{emoji} {title}](#{slug}) | {count} | {summary} |")
+
+    lines.append("")
+    if lang == "en":
+        lines.append(f"**Total: {total} tools** across {active_cats} active categories"
+                     + (f" (+{archived_cats} archived)." if archived_cats else "."))
+    else:
+        lines.append(f"**共 {total} 个工具**，分布在 {active_cats} 个活跃分类中"
+                     + (f"（+{archived_cats} 个归档）。" if archived_cats else "。"))
+    lines.append("")
+    # Activity breakdown sub-section
+    lines.append(render_stats(lang))
+    lines.append("---")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def render_stats(lang):
+    """Generate a statistics summary showing activity breakdown."""
+    status_counts = {"active": 0, "maintained": 0, "stagnant": 0, "archived": 0}
+    for t in tools:
+        status = t.get("activity_status", "active")
+        status_counts[status] = status_counts.get(status, 0) + 1
+
+    lines = []
+    if lang == "en":
+        lines.append("### Activity Breakdown")
+        lines.append("")
+        lines.append(f"- 🟢 **Active**: {status_counts.get('active', 0)}")
+        lines.append(f"- 🟡 **Maintained**: {status_counts.get('maintained', 0)}")
+        lines.append(f"- 🔴 **Stagnant**: {status_counts.get('stagnant', 0)}")
+        lines.append(f"- ⚫ **Archived**: {status_counts.get('archived', 0)}")
+    else:
+        lines.append("### 活跃度分布")
+        lines.append("")
+        lines.append(f"- 🟢 **活跃**: {status_counts.get('active', 0)}")
+        lines.append(f"- 🟡 **维护**: {status_counts.get('maintained', 0)}")
+        lines.append(f"- 🔴 **停滞**: {status_counts.get('stagnant', 0)}")
+        lines.append(f"- ⚫ **归档**: {status_counts.get('archived', 0)}")
+    lines.append("")
+    return "\n".join(lines)
+
+
 def render_readme(lang):
-    parts = [HEADER[lang]]
+    # The HEADER template ends with "---\n" after the Activity Markers section,
+    # followed by the Getting Started Path. We split the header at the
+    # "## 🚀 Getting Started Path" / "## 🚀 新手引导路径" marker to insert
+    # the dynamic Quick Navigation + Stats sections in between.
+    header = HEADER[lang]
+    gs_marker_en = "## 🚀 Getting Started Path"
+    gs_marker_zh = "## 🚀 新手引导路径"
+    gs_marker = gs_marker_en if lang == "en" else gs_marker_zh
+
+    idx = header.find(gs_marker)
+    if idx > 0:
+        header_top = header[:idx]
+        header_bottom = header[idx:]
+    else:
+        header_top = header
+        header_bottom = ""
+
+    parts = [header_top.rstrip() + "\n\n"]
+    parts.append(render_quick_nav(lang))
+    if header_bottom:
+        parts.append(header_bottom.rstrip() + "\n")
     for cat in categories:
         parts.append(render_category(cat, lang))
     parts.append(FOOTER[lang])
-    # Each part ends with a single trailing newline and starts with a
-    # non-blank line, so joining with "\n" inserts exactly one blank line
-    # between sections (the "---" separator followed by a blank line).
     return "\n".join(parts)
 
 

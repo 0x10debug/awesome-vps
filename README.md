@@ -7,6 +7,7 @@ A curated list of tools and resources for VPS users—from initial setup and sec
 ## Table of Contents
 
 - [🚀 Getting Started Path](#-getting-started-path)
+- [📊 Quick Navigation](#-quick-navigation)
 - [🔧 Initialization & Setup](#-initialization--setup)
 - [🛡️ Hardening & Security](#-hardening--security)
 - [🌐 Network & Proxy](#-network--proxy)
@@ -30,6 +31,33 @@ Each tool is tagged with an activity marker reflecting the health of its source 
 - ⚫ **Archived** — repository is archived/read-only
 
 Markers are refreshed by `scripts/update-metadata.sh` (GitHub API). Run `./scripts/update-metadata.sh --check` to inspect the latest report.
+
+---
+
+
+## 📊 Quick Navigation
+
+| Category | Tools | What it covers |
+|---|---|---|
+| [🔧 Initialization & Setup](#initialization-setup) | 5 | First minutes after getting a fresh server |
+| [🛡️ Hardening & Security](#hardening-security) | 7 | SSH, firewall, fail2ban, baseline hardening |
+| [🌐 Network & Proxy](#network-proxy) | 14 | Reverse proxy, SSL, tunneling, DNS |
+| [📦 Deployment](#deployment) | 10 | Docker Compose recipes and app suites |
+| [📊 Monitoring](#monitoring) | 6 | Uptime, metrics, logs, alerting |
+| [💾 Backup & Recovery](#backup-recovery) | 7 | Encrypted backup, restore drills, 3-2-1 |
+| [🤖 AI Self-Hosting](#ai-self-hosting) | 6 | Ollama, Open WebUI, RAG, LiteLLM |
+| [🔍 Audit & Compliance](#audit-compliance) | 5 | CIS benchmark, Lynis, drift detection |
+| [🗃️ Archived / Historical](#archived-historical) | 1 | Historical tools no longer actively maintained |
+| [🧩 0x10debug Ecosystem](#0x10debug-ecosystem) | 8 | Our integrated tool suite |
+
+**Total: 69 tools** across 9 active categories (+1 archived).
+
+### Activity Breakdown
+
+- 🟢 **Active**: 65
+- 🟡 **Maintained**: 3
+- 🔴 **Stagnant**: 0
+- ⚫ **Archived**: 1
 
 ---
 
