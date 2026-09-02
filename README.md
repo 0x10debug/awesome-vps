@@ -275,7 +275,7 @@ Contributions are welcome! To add a tool:
   activity_status: active     # active | maintained | stagnant | archived
   description:
     en: "One-line description of what it does."
-    zh: "一句话描述它的功能。"
+    zh: "One-line description of what it does."
 ```
 
 The `activity_status` field maps to an **activity marker**, refreshed automatically by `scripts/update-metadata.sh`. Use `active` (🟢) for new entries; the script will correct it on the next run if the repo is less active.

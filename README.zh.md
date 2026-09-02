@@ -1,311 +1,311 @@
-# Awesome VPS — 服务器建站、安全加固与自托管工具合集
+# Awesome VPS — Curated Tools for Server Setup, Security & Self-Hosting
 
-面向 VPS 用户的精选工具与资源列表——从系统初始化、安全加固到应用部署、监控和备份。无论你是第一次使用云服务器，还是用 Docker 搭建 Homelab，都能在这里找到合适的工具。按服务器运维的真实流程组织：先安全，再部署，持续监控。
+A curated list of tools and resources for VPS users—from initial setup and security hardening to deployment, monitoring, and backup. Whether you're running a cloud server for the first time or managing a homelab with Docker, you'll find the right tools here. Organized by the real workflow of a server administrator: secure first, deploy second, monitor always.
 
-> **刚接触 VPS？** 直接看 [🚀 新手引导路径](#-新手引导路径)——从零到生产就绪的完整步骤。
+> **New to VPS?** Skip to the [🚀 Getting Started Path](#-getting-started-path) — a step-by-step guide from zero to production-ready.
 
-## 目录
+## Table of Contents
 
-- [🚀 新手引导路径](#-新手引导路径)
-- [📊 快速导航](#-快速导航)
-- [🔧 初始化与设置](#-初始化与设置)
-- [🛡️ 加固与安全](#-加固与安全)
-- [🌐 网络与反代](#-网络与反代)
-- [📦 部署](#-部署)
-- [📊 监控](#-监控)
-- [💾 备份与恢复](#-备份与恢复)
-- [🤖 AI 自托管](#-ai-自托管)
-- [🔍 审计与合规](#-审计与合规)
-- [🗃️ 归档 / 历史](#-归档--历史)
-- [🧩 0x10debug 生态](#-0x10debug-生态)
-- [贡献指南](#贡献指南)
-- [许可证](#许可证)
+- [🚀 Getting Started Path](#-getting-started-path)
+- [📊 Quick Navigation](#-quick-navigation)
+- [🔧 Initialization & Setup](#-initialization--setup)
+- [🛡️ Hardening & Security](#-hardening--security)
+- [🌐 Network & Proxy](#-network--proxy)
+- [📦 Deployment](#-deployment)
+- [📊 Monitoring](#-monitoring)
+- [💾 Backup & Recovery](#-backup--recovery)
+- [🤖 AI Self-Hosting](#-ai-self-hosting)
+- [🔍 Audit & Compliance](#-audit--compliance)
+- [🗃️ Archived / Historical](#-archived--historical)
+- [🧩 0x10debug Ecosystem](#-0x10debug-ecosystem)
+- [Contributing](#contributing)
+- [License](#license)
 
-## 活跃度标记
+## Activity Markers
 
-每个工具都带有活跃度标记，反映其源码仓库的健康状态：
+Each tool is tagged with an activity marker reflecting the health of its source repository:
 
-- 🟢 **活跃** — 最近 6 个月内有 commit
-- 🟡 **维护** — 最近 6–12 个月内有 commit
-- 🔴 **停滞** — 12 个月以上无 commit
-- ⚫ **归档** — 仓库已归档/只读
+- 🟢 **Active** — commit within the last 6 months
+- 🟡 **Maintained** — commit within the last 6–12 months
+- 🔴 **Stagnant** — no commit in 12+ months
+- ⚫ **Archived** — repository is archived/read-only
 
-标记由 `scripts/update-metadata.sh` 通过 GitHub API 刷新。运行 `./scripts/update-metadata.sh --check` 查看最新报告。
+Markers are refreshed by `scripts/update-metadata.sh` (GitHub API). Run `./scripts/update-metadata.sh --check` to inspect the latest report.
 
 ---
 
 
-## 📊 快速导航
+## 📊 Quick Navigation
 
-| 分类 | 工具数 | 覆盖范围 |
+| Category | Tools | What it covers |
 |---|---|---|
-| [🔧 初始化与设置](#初始化与设置) | 5 | 拿到新服务器后的最初几分钟 |
-| [🛡️ 加固与安全](#加固与安全) | 7 | SSH、防火墙、fail2ban、基线加固 |
-| [🌐 网络与反代](#网络与反代) | 14 | 反向代理、SSL、隧道、DNS |
-| [📦 部署](#部署) | 10 | Docker Compose 食谱和应用套件 |
-| [📊 监控](#监控) | 6 | 可用性、指标、日志、告警 |
-| [💾 备份与恢复](#备份与恢复) | 7 | 加密备份、恢复演练、3-2-1 策略 |
-| [🤖 AI 自托管](#ai-自托管) | 6 | Ollama、Open WebUI、RAG、LiteLLM |
-| [🔍 审计与合规](#审计与合规) | 5 | CIS 基线、Lynis、漂移检测 |
-| [🗃️ 归档 / 历史](#归档-历史) | 1 | 已不再活跃维护的历史工具 |
-| [🧩 0x10debug 生态](#0x10debug-生态) | 8 | 我们的集成工具套件 |
+| [🔧 Initialization & Setup](#initialization-setup) | 5 | First minutes after getting a fresh server |
+| [🛡️ Hardening & Security](#hardening-security) | 7 | SSH, firewall, fail2ban, baseline hardening |
+| [🌐 Network & Proxy](#network-proxy) | 14 | Reverse proxy, SSL, tunneling, DNS |
+| [📦 Deployment](#deployment) | 10 | Docker Compose recipes and app suites |
+| [📊 Monitoring](#monitoring) | 6 | Uptime, metrics, logs, alerting |
+| [💾 Backup & Recovery](#backup-recovery) | 7 | Encrypted backup, restore drills, 3-2-1 |
+| [🤖 AI Self-Hosting](#ai-self-hosting) | 6 | Ollama, Open WebUI, RAG, LiteLLM |
+| [🔍 Audit & Compliance](#audit-compliance) | 5 | CIS benchmark, Lynis, drift detection |
+| [🗃️ Archived / Historical](#archived-historical) | 1 | Historical tools no longer actively maintained |
+| [🧩 0x10debug Ecosystem](#0x10debug-ecosystem) | 8 | Our integrated tool suite |
 
-**共 69 个工具**，分布在 9 个活跃分类中（+1 个归档）。
+**Total: 69 tools** across 9 active categories (+1 archived).
 
-### 活跃度分布
+### Activity Breakdown
 
-- 🟢 **活跃**: 65
-- 🟡 **维护**: 3
-- 🔴 **停滞**: 0
-- ⚫ **归档**: 1
-
----
-
-## 🚀 新手引导路径
-
-刚接触 VPS？以下是从裸机到生产就绪的完整路径：
-
-### 第 1 步：安全加固服务器（10 分钟）
-
-在安装任何东西之前，先锁定你的服务器。更新系统、创建非 root 用户并配置 SSH 密钥、禁用 root 登录、开启防火墙。
-
-→ 使用 [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) 一条命令完成，或手动操作：
-`apt update && apt upgrade` → 创建用户 → 添加 SSH 密钥 → 编辑 `sshd_config` → 启用 UFW。
-
-### 第 2 步：安装 Docker（5 分钟）
-
-容器化是 VPS 部署服务的标准方式。Docker 让应用隔离运行、易于更新。
-
-→ [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) 包含 Docker 安装，或手动安装 [Docker Engine](https://docs.docker.com/engine/install/) + [Docker Compose](https://docs.docker.com/compose/)。
-
-### 第 3 步：配置反向代理（15 分钟）
-
-反向代理将流量路由到你的服务，并自动管理 SSL 证书。这是通过 HTTPS 安全暴露应用的方式。
-
-→ 使用 [network-toolkit](https://github.com/0x10debug/network-toolkit) 获取预配置模板，或选择 [Caddy](https://caddyserver.com/)、[Traefik](https://traefik.io/)、[Nginx Proxy Manager](https://nginxproxymanager.com/)。
-
-### 第 4 步：部署你的第一个应用（10 分钟）
-
-选择一个 Docker Compose 食谱并运行。从简单的开始——也许是一个媒体服务器或密码管理器。
-
-→ 浏览 [compose-recipes](https://github.com/0x10debug/compose-recipes) 获取场景化套件，或在 [linuxserver.io](https://docs.linuxserver.io/) 找单个应用的 compose 文件。
-
-### 第 5 步：设置监控（5 分钟）
-
-知道你的服务什么时候挂了。一个简单的可用性监控几分钟就能搭好，让你不用从用户投诉中发现宕机。
-
-→ 部署 [monitor-stack](https://github.com/0x10debug/monitor-stack) 或安装 [Uptime Kuma](https://github.com/louislam/uptime-kuma) + [Beszel](https://github.com/henrygd/beszel)。
-
-### 第 6 步：配置备份（10 分钟）
-
-从没测试过的备份只是美好的愿望。设置加密的自动备份，并执行一次恢复演练。
-
-→ 使用 [backup-kit](https://github.com/0x10debug/backup-kit) 获取预配置策略，或手动配置 [Restic](https://restic.net/) / [Kopia](https://kopia.io/)。
-
-### 第 7 步：运行安全审计（15 分钟）
-
-检查你的配置是否有弱点。SSH 设置是否合规？容器镜像是否有漏洞？配置是否偏离了基线？
-
-→ 运行 [security-audit](https://github.com/0x10debug/security-audit) 或使用 [Lynis](https://cisofy.com/lynis/)。
-
-🎉 **你的 VPS 现在生产就绪了。**
+- 🟢 **Active**: 65
+- 🟡 **Maintained**: 3
+- 🔴 **Stagnant**: 0
+- ⚫ **Archived**: 1
 
 ---
 
-## 🔧 初始化与设置
+## 🚀 Getting Started Path
 
-拿到新服务器后最初几分钟要用的工具。
+New to VPS? Here's the path from a fresh server to production-ready:
 
-- 🟢 [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) - 一条命令完成 VPS 初始化和安全加固，集成 CrowdSec、Docker 和 MOTD 仪表盘。 `Shell`
-- 🟢 [vpskit](https://github.com/mariusdjen/vpskit) - 9 步交互式 VPS 设置：更新、用户创建、SSH 加固、防火墙、Docker、Caddy。 `Shell`
-- 🟢 [bento](https://github.com/felipefontoura/bento) - 15 分钟将裸 VPS 变成带 Traefik、Portainer 和 TLS 的 Docker Swarm。 `Shell`
-- 🟡 [vpsarmor](https://github.com/flegoff/vpsarmor) - Ubuntu LTS 和 Debian 服务器的安全加固模板。KISS 原则，5 层防护。 `Shell`
-- 🟢 [linvpsliteinit](https://github.com/tonysbb/linvpsliteinit) - 轻量级 VPS 设置工具包，支持 Debian、Ubuntu 和 Alpine。初始化一次，后续按需添加组件。 `Shell`
+### Step 1: Secure Your Server (10 min)
 
----
+Before installing anything, lock down your server. Update the system, create a non-root user with SSH keys, disable root login, and enable a firewall.
 
-## 🛡️ 加固与安全
+→ Use [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) for a one-command setup, or do it manually:
+`apt update && apt upgrade` → create user → add SSH key → edit `sshd_config` → enable UFW.
 
-保护服务器免受攻击的工具。
+### Step 2: Install Docker (5 min)
 
-- 🟢 [CrowdSec](https://github.com/crowdsecurity/crowdsec) - 现代入侵防护系统，众包威胁情报。用社区封禁列表和多层 bouncer 替代 fail2ban。 `Go`
-- 🟢 [fail2ban](https://github.com/fail2ban/fail2ban) - 经典的暴力破解防护。多次登录失败后自动封禁 IP。 `Python`
-- 🟢 [security-audit](https://github.com/0x10debug/security-audit) - VPS 安全审计工具，CIS Benchmark 检查、配置漂移检测、一键修复。 `Shell`
-- 🟢 [Lynis](https://cisofy.com/lynis/) - Unix 系统安全审计工具。输出详细的加固建议。 `Shell`
-- 🟢 [OSSEC](https://www.ossec.net/) - 基于主机的入侵检测系统。监控日志、检测 rootkit、异常告警。 `C`
-- 🟢 [ssh-audit](https://github.com/jtesta/ssh-audit) - SSH 服务端与客户端配置审计工具。检查主机密钥、算法和策略合规性。 `Python`
-- 🟡 [CIS-CAT](https://learn.cisecurity.org/cis-cat-pro-quiz) - CIS Benchmark 配置评估工具。专业级合规扫描。 `Java`
+Containerization is the standard way to deploy services on a VPS. Docker keeps your apps isolated and easy to update.
 
----
+→ [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) includes Docker installation, or install [Docker Engine](https://docs.docker.com/engine/install/) + [Docker Compose](https://docs.docker.com/compose/) manually.
 
-## 🌐 网络与反代
+### Step 3: Set Up Reverse Proxy (15 min)
 
-暴露服务、管理 SSL、穿透内网的工具。
+A reverse proxy routes traffic to your services and manages SSL certificates automatically. This is how you expose apps securely with HTTPS.
 
-- 🟢 [network-toolkit](https://github.com/0x10debug/network-toolkit) - 反向代理、SSL、内网穿透、DDNS 组合成可部署模板，专为 VPS 设计。 `Shell`
-- 🟢 [Caddy](https://github.com/caddyserver/caddy) - 自动 HTTPS 的 Web 服务器。最简单的自托管反代方案。 `Go`
-- 🟢 [Traefik](https://github.com/traefik/traefik) - 云原生反向代理，支持 Docker label 路由和自动服务发现。 `Go`
-- 🟢 [Nginx Proxy Manager](https://github.com/NginxProxyManager/nginx-proxy-manager) - 带 Web 界面的 Nginx 反代，免费 Let's Encrypt SSL。 `JavaScript`
-- 🟢 [SWAG](https://github.com/linuxserver/docker-swag) - Nginx + 自动 SSL + linuxserver.io 预置反代配置。 `Shell`
-- 🟢 [acme.sh](https://github.com/acmesh-official/acme.sh) - 纯 Shell 实现的 ACME 客户端。支持多家 CA 和 DNS API。 `Shell`
-- 🟢 [frp](https://github.com/fatedier/frp) - 快速反向代理，用于 NAT 穿透。通过公网服务器暴露本地服务。 `Go`
-- 🟢 [rathole](https://github.com/rathole-org/rathole) - 轻量高性能的 frp 替代品，Rust 编写。 `Rust`
-- 🟢 [Tailscale](https://github.com/tailscale/tailscale) - 基于 WireGuard 的零配置 mesh VPN。安全连接你的设备。 `Go`
-- 🟢 [Headscale](https://github.com/juanfont/headscale) - 可自托管的开源 Tailscale 控制服务器。搭建你自己的 mesh VPN。 `Go`
-- 🟢 [NetBird](https://github.com/netbirdio/netbird) - 可自托管的 WireGuard mesh VPN，支持 SSO、MFA 和 Web 界面。 `Go`
-- 🟢 [WireGuard](https://www.wireguard.com/) - 快速、现代的 VPN 协议。用 [wireguard-install](https://github.com/angristan/wireguard-install) 一键安装。 `C`
-- 🟢 [ddns-go](https://github.com/jeessy2/ddns-go) - 自动 DDNS 客户端，带 Web 界面。支持 Cloudflare、阿里云、腾讯云等。 `Go`
-- 🟢 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) - 无需开放入站端口即可暴露服务。仅出站隧道连接 Cloudflare 边缘。 `Go`
+→ Use [network-toolkit](https://github.com/0x10debug/network-toolkit) for pre-configured templates, or pick [Caddy](https://caddyserver.com/), [Traefik](https://traefik.io/), or [Nginx Proxy Manager](https://nginxproxymanager.com/).
 
----
+### Step 4: Deploy Your First App (10 min)
 
-## 📦 部署
+Choose a Docker Compose recipe and run it. Start simple—maybe a media server or a password manager.
 
-在 VPS 上部署和管理应用的工具。
+→ Browse [compose-recipes](https://github.com/0x10debug/compose-recipes) for scenario-based suites, or find individual app compose files on [linuxserver.io](https://docs.linuxserver.io/).
 
-- 🟢 [Docker](https://github.com/moby/moby) - 容器平台。现代 VPS 部署的基石。 `Go`
-- 🟢 [Docker Compose](https://github.com/docker/compose) - 定义和运行多容器应用。自托管必备。 `Go`
-- 🟢 [compose-recipes](https://github.com/0x10debug/compose-recipes) - 场景化 Docker Compose 套件。家庭媒体、个人生产力、开发环境等。 `YAML`
-- 🟢 [Coolify](https://github.com/coollabsio/coolify) - 开源可自托管 PaaS。280+ 一键部署服务和数据库。 `TypeScript`
-- 🟢 [Dokploy](https://github.com/Dokploy/dokploy) - 轻量 PaaS，原生支持 Docker Compose。适合小型 VPS。 `TypeScript`
-- 🟢 [CapRover](https://github.com/caprover/caprover) - 基于 Docker Swarm 的自托管 PaaS，大量一键应用。 `TypeScript`
-- 🟢 [1Panel](https://github.com/1Panel-dev/1Panel) - 现代 Linux 服务器管理面板，带应用商店和 AI 管理。 `Go`
-- 🟢 [Portainer](https://github.com/portainer/portainer) - Docker 管理 Web 界面。可视化容器管理。 `TypeScript`
-- 🟢 [Umbrel](https://github.com/getumbrel/umbrel) - 家庭服务器 OS，300+ 应用商店。界面精美，专为家庭服务器设计。 `TypeScript`
-- 🟢 [Runtipi](https://github.com/runtipi/runtipi) - 个人家庭服务器，一条命令安装，一键部署应用。 `TypeScript`
+### Step 5: Set Up Monitoring (5 min)
+
+Know when your services go down. A simple uptime monitor takes minutes to set up and saves you from discovering outages from user complaints.
+
+→ Deploy [monitor-stack](https://github.com/0x10debug/monitor-stack) or install [Uptime Kuma](https://github.com/louislam/uptime-kuma) + [Beszel](https://github.com/henrygd/beszel).
+
+### Step 6: Configure Backups (10 min)
+
+A backup you've never tested is just a hope. Set up encrypted, automated backups and run a restore drill.
+
+→ Use [backup-kit](https://github.com/0x10debug/backup-kit) for pre-configured strategies, or set up [Restic](https://restic.net/) / [Kopia](https://kopia.io/) manually.
+
+### Step 7: Run a Security Audit (15 min)
+
+Check your configuration for weaknesses. Are your SSH settings compliant? Are your container images vulnerable? Has any config drifted from baseline?
+
+→ Run [security-audit](https://github.com/0x10debug/security-audit) or use [Lynis](https://cisofy.com/lynis/).
+
+🎉 **Your VPS is now production-ready.**
 
 ---
 
-## 📊 监控
+## 🔧 Initialization & Setup
 
-了解服务是否在线、服务器是否健康的工具。
+Tools for the first few minutes after you get a fresh server.
 
-- 🟢 [monitor-stack](https://github.com/0x10debug/monitor-stack) - 轻量监控栈：可用性、服务器指标、Docker 状态、安全告警一体化部署。 `Shell`
-- 🟢 [Uptime Kuma](https://github.com/louislam/uptime-kuma) - 精美的自托管可用性监控，90+ 通知渠道和状态页。 `JavaScript`
-- 🟢 [Beszel](https://github.com/henrygd/beszel) - 轻量服务器监控，历史数据、Docker 状态、告警。 `Go`
-- 🟢 [Netdata](https://github.com/netdata/netdata) - 实时基础设施监控，每秒指标和 ML 异常检测。 `C`
-- 🟢 [Grafana](https://github.com/grafana/grafana) + [Prometheus](https://github.com/prometheus/prometheus) - 专业指标和仪表盘。功能强大但资源消耗大。 `Go`
-- 🟢 [哪吒探针](https://github.com/nezhahq/nezha) - 多服务器监控面板，中文 VPS 社区流行。 `Go`
-
----
-
-## 💾 备份与恢复
-
-确保数据在灾难中存活下来的工具。
-
-- 🟢 [backup-kit](https://github.com/0x10debug/backup-kit) - VPS 预配置备份策略：加密、自动化、恢复演练、Docker volume 支持。 `Shell`
-- 🟢 [Restic](https://github.com/restic/restic) - 快速、安全、加密的备份工具，支持去重。服务器备份的 CLI 标杆。 `Go`
-- 🟢 [Kopia](https://github.com/kopia/kopia) - 加密快照备份，带 Web 界面和多后端支持。 `Go`
-- 🟢 [BorgBackup](https://github.com/borgbackup/borg) - 去重、压缩、带认证的备份。许多服务器备份工作流的底层引擎。 `Python`
-- 🟢 [Borgmatic](https://github.com/borgmatic-collective/borgmatic) - BorgBackup 的 YAML 配置封装。声明式备份，集成 cron。 `Python`
-- 🟢 [Duplicati](https://github.com/duplicati/duplicati) - 带 Web 界面的备份工具，支持多后端。 `C#`
-- 🟢 [rclone](https://github.com/rclone/rclone) - 云存储瑞士军刀。同步、挂载、复制，支持 70+ 后端。 `Go`
+- 🟢 [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) - One-command VPS initialization and security hardening with CrowdSec, Docker, and MOTD dashboard. `Shell`
+- 🟢 [vpskit](https://github.com/mariusdjen/vpskit) - 9-step interactive VPS setup: updates, user creation, SSH hardening, firewall, Docker, Caddy. `Shell`
+- 🟢 [bento](https://github.com/felipefontoura/bento) - Turns a fresh VPS into a hardened Docker Swarm with Traefik, Portainer, and TLS in 15 minutes. `Shell`
+- 🟡 [vpsarmor](https://github.com/flegoff/vpsarmor) - Security boilerplate for Ubuntu LTS and Debian servers. KISS philosophy, 5 layers of protection. `Shell`
+- 🟢 [linvpsliteinit](https://github.com/tonysbb/linvpsliteinit) - Lightweight VPS setup toolkit for Debian, Ubuntu, and Alpine. Init once, add components later. `Shell`
 
 ---
 
-## 🤖 AI 自托管
+## 🛡️ Hardening & Security
 
-在自己的服务器上运行 AI 模型的工具。
+Tools to protect your server from attacks.
 
-- 🟢 [ai-workstation](https://github.com/0x10debug/ai-workstation) - VPS 上一键部署 AI 工作站：Ollama + Open WebUI，带反代、鉴权和模型管理。 `Shell`
-- 🟢 [Ollama](https://github.com/ollama/ollama) - 本地运行 Llama、Mistral、Phi、Qwen 等模型。自托管 LLM 的标准方案。 `Go`
-- 🟢 [Open WebUI](https://github.com/open-webui/open-webui) - ChatGPT 风格的 Ollama 和 OpenAI 兼容 API 前端。功能丰富，支持离线。 `Python`
-- 🟢 [Lobe Chat](https://github.com/lobehub/lobehub) - 精美的多模型 AI 聊天，带插件生态。 `TypeScript`
-- 🟢 [AnythingLLM](https://github.com/Mintplex-Labs/anything-llm) - 文档问答，集成向量存储和 RAG。 `JavaScript`
-- 🟢 [vLLM](https://github.com/vllm-project/vllm) - 高吞吐 LLM 推理引擎。适合有 GPU 的服务器。 `Python`
-
----
-
-## 🔍 审计与合规
-
-检查服务器漏洞和合规性的工具。
-
-- 🟢 [security-audit](https://github.com/0x10debug/security-audit) - CIS Benchmark 合规、漂移检测、容器扫描、自动修复——专为 VPS 设计。 `Shell`
-- 🟢 [Lynis](https://cisofy.com/lynis/) - Linux/Unix 安全审计。详细的加固建议。 `Shell`
-- 🟢 [Trivy](https://github.com/aquasecurity/trivy) - 容器镜像和文件系统漏洞扫描。 `Go`
-- 🟡 [chkrootkit](http://www.chkrootkit.org/) - Rootkit 检测器。检查已知 rootkit 特征。 `C`
-- 🟢 [CrowdSec Dashboard](https://app.crowdsec.net/) - 可视化 CrowdSec 拦截的攻击。威胁情报一目了然。 `Web`
+- 🟢 [CrowdSec](https://github.com/crowdsecurity/crowdsec) - Modern intrusion prevention with crowdsourced threat intelligence. Replaces fail2ban with community blocklists and multi-layer bouncers. `Go`
+- 🟢 [fail2ban](https://github.com/fail2ban/fail2ban) - Classic brute-force protection. Blocks IPs after repeated failed login attempts. `Python`
+- 🟢 [security-audit](https://github.com/0x10debug/security-audit) - VPS security auditor with CIS Benchmark checks, drift detection, and one-click fixes. `Shell`
+- 🟢 [Lynis](https://cisofy.com/lynis/) - Security auditing tool for Unix-based systems. Reports hardening suggestions. `Shell`
+- 🟢 [OSSEC](https://www.ossec.net/) - Host-based intrusion detection system. Monitors logs, detects rootkits, alerts on anomalies. `C`
+- 🟢 [ssh-audit](https://github.com/jtesta/ssh-audit) - SSH server and client configuration auditor. Checks host keys, algorithms, and policy compliance. `Python`
+- 🟡 [CIS-CAT](https://learn.cisecurity.org/cis-cat-pro-quiz) - CIS Benchmark configuration assessment tool. Professional compliance scanning. `Java`
 
 ---
 
-## 🗃️ 归档 / 历史
+## 🌐 Network & Proxy
 
-曾经有用、但上游仓库现已归档的工具。保留在此供参考；请优先使用上方的活跃替代品。
+Tools for exposing services, managing SSL, and traversing NAT.
 
-- ⚫ [Homarr](https://github.com/ajnart/homarr) - 可定制的家庭服务器仪表盘，用于和 Docker 容器交互。上游已归档；可改用 [Homepage](https://github.com/gethomepage/homepage) 或 [Dashy](https://github.com/Lissy93/dashy)。 `TypeScript`
-
-> 知道其他已归档的 VPS 工具？欢迎提 issue 或 PR。
-
----
-
-## 🧩 0x10debug 生态
-
-以下仓库由 [0x10debug](https://github.com/0x10debug) 账号维护，构成完整的 VPS 运营 + 安全工具链。每个都可组合使用：初始化服务器、加固、部署应用、监控、备份、审计——端到端覆盖。
-
-- 🟢 [vps-security-enhancement-scripts](https://github.com/0x10debug/vps-security-enhancement-scripts) - VPS 安全加固脚本集（SSH、防火墙、内核、fail2ban/CrowdSec 基线）。
-- 🟢 [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) - VPS 初始化 CLI：一条命令从裸机到加固、Docker 就绪的主机。
-- 🟢 [compose-recipes](https://github.com/0x10debug/compose-recipes) - Docker Compose 部署套件，按自托管场景组织。
-- 🟢 [network-toolkit](https://github.com/0x10debug/network-toolkit) - 网络配置模板库：反向代理、SSL、隧道、DDNS。
-- 🟢 [monitor-stack](https://github.com/0x10debug/monitor-stack) - 监控栈：可用性、服务器指标、Docker 状态、安全告警。
-- 🟢 [backup-kit](https://github.com/0x10debug/backup-kit) - 备份工具，预配置加密策略和恢复演练。
-- 🟢 [security-audit](https://github.com/0x10debug/security-audit) - 深度安全审计：CIS Benchmark 检查、漂移检测、容器扫描、自动修复。
-- 🟢 [ai-workstation](https://github.com/0x10debug/ai-workstation) - AI 工作站一键部署：Ollama + Open WebUI，带反代和鉴权。
-
-它们共同覆盖完整的 VPS 生命周期：**初始化 → 加固 → 部署 → 监控 → 备份 → 审计**。
+- 🟢 [network-toolkit](https://github.com/0x10debug/network-toolkit) - Reverse proxy, SSL, tunnel, and DDNS combined into deployable templates for VPS. `Shell`
+- 🟢 [Caddy](https://github.com/caddyserver/caddy) - Web server with automatic HTTPS. Simplest reverse proxy for self-hosted apps. `Go`
+- 🟢 [Traefik](https://github.com/traefik/traefik) - Cloud-native reverse proxy with Docker label routing and automatic service discovery. `Go`
+- 🟢 [Nginx Proxy Manager](https://github.com/NginxProxyManager/nginx-proxy-manager) - Nginx reverse proxy with web GUI, free SSL via Let's Encrypt. `JavaScript`
+- 🟢 [SWAG](https://github.com/linuxserver/docker-swag) - Nginx + auto SSL + pre-built reverse proxy configs by linuxserver.io. `Shell`
+- 🟢 [acme.sh](https://github.com/acmesh-official/acme.sh) - Pure shell ACME client. Supports multiple CAs and DNS API providers. `Shell`
+- 🟢 [frp](https://github.com/fatedier/frp) - Fast reverse proxy for NAT traversal. Expose local services through a public server. `Go`
+- 🟢 [rathole](https://github.com/rathole-org/rathole) - Lightweight, high-performance alternative to frp, written in Rust. `Rust`
+- 🟢 [Tailscale](https://github.com/tailscale/tailscale) - WireGuard-based mesh VPN with zero config. Connect your devices securely. `Go`
+- 🟢 [Headscale](https://github.com/juanfont/headscale) - Self-hosted, open-source control server for Tailscale. Run your own mesh VPN. `Go`
+- 🟢 [NetBird](https://github.com/netbirdio/netbird) - Self-hosted WireGuard mesh VPN with SSO, MFA, and web UI. `Go`
+- 🟢 [WireGuard](https://www.wireguard.com/) - Fast, modern VPN protocol. Use [wireguard-install](https://github.com/angristan/wireguard-install) for one-click setup. `C`
+- 🟢 [ddns-go](https://github.com/jeessy2/ddns-go) - Automatic DDNS client with web UI. Supports Cloudflare, Aliyun, Tencent, and more. `Go`
+- 🟢 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) - Expose services without opening inbound ports. Outbound-only tunnel to Cloudflare edge. `Go`
 
 ---
 
-## 贡献指南
+## 📦 Deployment
 
-欢迎贡献！添加工具的步骤：
+Tools for deploying and managing applications on your VPS.
 
-1. Fork 本仓库
-2. 在 `data/tools.yaml`（单一数据源）中添加工具
-3. 运行 `./scripts/generate-readme.sh --lang all` 重新生成 `README.md` 和 `README.zh.md`
-4. 运行 `./scripts/validate-links.sh` 确认链接可达
-5. 提交 Pull Request
+- 🟢 [Docker](https://github.com/moby/moby) - Container platform. The foundation of modern VPS deployment. `Go`
+- 🟢 [Docker Compose](https://github.com/docker/compose) - Define and run multi-container applications. Essential for self-hosting. `Go`
+- 🟢 [compose-recipes](https://github.com/0x10debug/compose-recipes) - Scenario-based Docker Compose suites for self-hosted apps. Home media, productivity, dev environment, and more. `YAML`
+- 🟢 [Coolify](https://github.com/coollabsio/coolify) - Open-source self-hostable PaaS. Deploy apps and databases with 280+ one-click services. `TypeScript`
+- 🟢 [Dokploy](https://github.com/Dokploy/dokploy) - Lightweight PaaS with native Docker Compose support. Minimal footprint for small VPS. `TypeScript`
+- 🟢 [CapRover](https://github.com/caprover/caprover) - Self-hosted PaaS with Docker Swarm and large one-click app library. `TypeScript`
+- 🟢 [1Panel](https://github.com/1Panel-dev/1Panel) - Modern Linux server management panel with app store and AI management. `Go`
+- 🟢 [Portainer](https://github.com/portainer/portainer) - Docker management web UI. Visual container management for all levels. `TypeScript`
+- 🟢 [Umbrel](https://github.com/getumbrel/umbrel) - Home server OS with 300+ app store. Beautiful UI, designed for home servers. `TypeScript`
+- 🟢 [Runtipi](https://github.com/runtipi/runtipi) - Personal homeserver with one-command setup and one-click app installs. `TypeScript`
 
-### 条目格式（YAML）
+---
+
+## 📊 Monitoring
+
+Tools to know if your services are up and your server is healthy.
+
+- 🟢 [monitor-stack](https://github.com/0x10debug/monitor-stack) - Lightweight monitoring stack: uptime, server metrics, Docker stats, and security alerts in one deploy. `Shell`
+- 🟢 [Uptime Kuma](https://github.com/louislam/uptime-kuma) - Fancy self-hosted uptime monitor with 90+ notification channels and status pages. `JavaScript`
+- 🟢 [Beszel](https://github.com/henrygd/beszel) - Lightweight server monitoring with historical data, Docker stats, and alerts. `Go`
+- 🟢 [Netdata](https://github.com/netdata/netdata) - Real-time infrastructure monitoring with per-second metrics and ML anomaly detection. `C`
+- 🟢 [Grafana](https://github.com/grafana/grafana) + [Prometheus](https://github.com/prometheus/prometheus) - Professional metrics and dashboards. Powerful but resource-heavy. `Go`
+- 🟢 [Nezha](https://github.com/nezhahq/nezha) - Multi-server monitoring panel popular in the Chinese VPS community. `Go`
+
+---
+
+## 💾 Backup & Recovery
+
+Tools to ensure your data survives disasters.
+
+- 🟢 [backup-kit](https://github.com/0x10debug/backup-kit) - Pre-configured backup strategies for VPS: encrypted, automated, with restore drills and Docker volume support. `Shell`
+- 🟢 [Restic](https://github.com/restic/restic) - Fast, secure, encrypted backup tool with deduplication. CLI standard for server backups. `Go`
+- 🟢 [Kopia](https://github.com/kopia/kopia) - Encrypted snapshot backup with web UI and multi-backend support. `Go`
+- 🟢 [BorgBackup](https://github.com/borgbackup/borg) - Deduplicating, compressing, authenticated backup. The engine behind many server backup workflows. `Python`
+- 🟢 [Borgmatic](https://github.com/borgmatic-collective/borgmatic) - YAML-configured wrapper around BorgBackup. Declarative backup with cron integration. `Python`
+- 🟢 [Duplicati](https://github.com/duplicati/duplicati) - Backup tool with web UI and multi-backend support. `C#`
+- 🟢 [rclone](https://github.com/rclone/rclone) - Cloud storage Swiss Army knife. Sync, mount, and copy across 70+ backends. `Go`
+
+---
+
+## 🤖 AI Self-Hosting
+
+Tools to run AI models on your own server.
+
+- 🟢 [ai-workstation](https://github.com/0x10debug/ai-workstation) - One-command AI deployment on VPS: Ollama + Open WebUI with reverse proxy, auth, and model management. `Shell`
+- 🟢 [Ollama](https://github.com/ollama/ollama) - Run Llama, Mistral, Phi, Qwen, and other models locally. The standard for self-hosted LLMs. `Go`
+- 🟢 [Open WebUI](https://github.com/open-webui/open-webui) - ChatGPT-style frontend for Ollama and OpenAI-compatible APIs. Feature-rich, offline-capable. `Python`
+- 🟢 [Lobe Chat](https://github.com/lobehub/lobehub) - Beautiful multi-model AI chat with plugin ecosystem. `TypeScript`
+- 🟢 [AnythingLLM](https://github.com/Mintplex-Labs/anything-llm) - Document Q&A with vector storage and RAG. `JavaScript`
+- 🟢 [vLLM](https://github.com/vllm-project/vllm) - High-throughput LLM inference engine. For GPU servers with serious compute needs. `Python`
+
+---
+
+## 🔍 Audit & Compliance
+
+Tools to check your server for vulnerabilities and compliance.
+
+- 🟢 [security-audit](https://github.com/0x10debug/security-audit) - CIS Benchmark compliance, drift detection, container scanning, and auto-fix—designed for VPS. `Shell`
+- 🟢 [Lynis](https://cisofy.com/lynis/) - Security auditing for Linux/Unix. Detailed hardening suggestions. `Shell`
+- 🟢 [Trivy](https://github.com/aquasecurity/trivy) - Container image and filesystem vulnerability scanner. `Go`
+- 🟡 [chkrootkit](http://www.chkrootkit.org/) - Rootkit detector. Checks for known rootkit signatures. `C`
+- 🟢 [CrowdSec Dashboard](https://app.crowdsec.net/) - Visualize attacks blocked by CrowdSec. Threat intelligence at a glance. `Web`
+
+---
+
+## 🗃️ Archived / Historical
+
+Tools that were once useful but whose upstream repositories are now archived. Kept here for reference; prefer the active alternatives above.
+
+- ⚫ [Homarr](https://github.com/ajnart/homarr) - Customizable dashboard for interacting with Docker containers on a homeserver. Archived upstream; consider [Homepage](https://github.com/gethomepage/homepage) or [Dashy](https://github.com/Lissy93/dashy) instead. `TypeScript`
+
+> Know an archived VPS tool that should be listed here? Open an issue or PR.
+
+---
+
+## 🧩 0x10debug Ecosystem
+
+The repos below, maintained under the [0x10debug](https://github.com/0x10debug) account, form a complete VPS operations + security toolchain. Each one is designed to be composable: bootstrap a server, harden it, deploy apps, monitor, back up, and audit—end to end.
+
+- 🟢 [vps-security-enhancement-scripts](https://github.com/0x10debug/vps-security-enhancement-scripts) - VPS security hardening script collection (SSH, firewall, kernel, fail2ban/CrowdSec baselines).
+- 🟢 [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) - VPS initialization CLI: one command from fresh server to hardened, Docker-ready host.
+- 🟢 [compose-recipes](https://github.com/0x10debug/compose-recipes) - Docker Compose deployment suites organized by self-hosting scenario.
+- 🟢 [network-toolkit](https://github.com/0x10debug/network-toolkit) - Network configuration template library: reverse proxy, SSL, tunnels, DDNS.
+- 🟢 [monitor-stack](https://github.com/0x10debug/monitor-stack) - Monitoring stack: uptime, server metrics, Docker stats, and security alerts.
+- 🟢 [backup-kit](https://github.com/0x10debug/backup-kit) - Backup tooling with pre-configured encrypted strategies and restore drills.
+- 🟢 [security-audit](https://github.com/0x10debug/security-audit) - Deep security audit: CIS Benchmark checks, drift detection, container scanning, auto-fix.
+- 🟢 [ai-workstation](https://github.com/0x10debug/ai-workstation) - AI workstation one-click deploy: Ollama + Open WebUI with reverse proxy and auth.
+
+Together they cover the full VPS lifecycle: **bootstrap → harden → deploy → monitor → back up → audit**.
+
+---
+
+## Contributing
+
+Contributions are welcome! To add a tool:
+
+1. Fork this repository
+2. Add the tool to `data/tools.yaml` (the single source of truth)
+3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md` and `README.zh.md`
+4. Run `./scripts/validate-links.sh` to confirm links are reachable
+5. Submit a pull request
+
+### Entry Format (YAML)
 
 ```yaml
-- name: 工具名
+- name: Tool Name
   url: https://github.com/user/repo
-  category: deployment        # data/tools.yaml 中定义的分类 id
-  language: Go                # 主要实现语言
+  category: deployment        # one of the category ids in data/tools.yaml
+  language: Go                # primary implementation language
   activity_status: active     # active | maintained | stagnant | archived
   description:
     en: "One-line description of what it does."
-    zh: "一句话描述它的功能。"
+    zh: "One-line description of what it does."
 ```
 
-`activity_status` 字段对应**活跃度标记**，由 `scripts/update-metadata.sh` 自动刷新。新条目先用 `active`（🟢），下次脚本运行时会按仓库实际活跃度修正。
+The `activity_status` field maps to an **activity marker**, refreshed automatically by `scripts/update-metadata.sh`. Use `active` (🟢) for new entries; the script will correct it on the next run if the repo is less active.
 
-### 活跃度标记
+### Activity Markers
 
-- 🟢 **活跃** — 最近 6 个月内有 commit
-- 🟡 **维护** — 最近 6–12 个月内有 commit
-- 🔴 **停滞** — 12 个月以上无 commit
-- ⚫ **归档** — 仓库已归档/只读
+- 🟢 **Active** — commit within the last 6 months
+- 🟡 **Maintained** — commit within the last 6–12 months
+- 🔴 **Stagnant** — no commit in 12+ months
+- ⚫ **Archived** — repository is archived/read-only
 
-变为 🔴 或 ⚫ 的工具会移到[归档 / 历史](#-归档--历史)小节。
+Tools that become 🔴 or ⚫ are moved to the [Archived / Historical](#-archived--historical) section.
 
-### 准则
+### Guidelines
 
-- 工具必须开源（或有免费的自托管版本）
-- 描述必须原创（不要复制工具的 README）
-- 放在正确的分类下
-- 同时提供 `en` 和 `zh` 描述
-- 每个分类应有 3–15 个工具；必要时拆分或合并分类
+- Tools must be open-source (or have a free self-hostable tier)
+- Description must be original (don't copy the tool's README)
+- Place in the correct category
+- Provide both `en` and `zh` descriptions
+- Each category should contain 3–15 tools; split or merge categories if needed
 
-### 脚本
+### Scripts
 
-- `scripts/generate-readme.sh` — 从 `data/tools.yaml` 生成 README.md / README.zh.md（`--lang en|zh|all`，`--check` 校验是否一致）
-- `scripts/update-metadata.sh` — 通过 GitHub API 刷新活跃度标记（`--check` 仅报告，`--update` 改写 YAML + README）
-- `scripts/validate-links.sh` — 校验 README 中所有链接可达（`--timeout 秒数`）
-- `scripts/check-links.sh` — 旧版链接检查器
+- `scripts/generate-readme.sh` — render README.md / README.zh.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
+- `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite YAML + READMEs)
+- `scripts/validate-links.sh` — verify all README links are reachable (`--timeout SECONDS`)
+- `scripts/check-links.sh` — legacy link checker
 
 ---
 
-## 许可证
+## License
 
 [MIT](./LICENSE)

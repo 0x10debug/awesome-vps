@@ -200,90 +200,90 @@ Check your configuration for weaknesses. Are your SSH settings compliant? Are yo
 
 ---
 """,
-"zh": """# Awesome VPS — 服务器建站、安全加固与自托管工具合集
+"zh": """# Awesome VPS — Curated Tools for Server Setup, Security & Self-Hosting
 
-面向 VPS 用户的精选工具与资源列表——从系统初始化、安全加固到应用部署、监控和备份。无论你是第一次使用云服务器，还是用 Docker 搭建 Homelab，都能在这里找到合适的工具。按服务器运维的真实流程组织：先安全，再部署，持续监控。
+A curated list of tools and resources for VPS users—from initial setup and security hardening to deployment, monitoring, and backup. Whether you're running a cloud server for the first time or managing a homelab with Docker, you'll find the right tools here. Organized by the real workflow of a server administrator: secure first, deploy second, monitor always.
 
-> **刚接触 VPS？** 直接看 [🚀 新手引导路径](#-新手引导路径)——从零到生产就绪的完整步骤。
+> **New to VPS?** Skip to the [🚀 Getting Started Path](#-getting-started-path) — a step-by-step guide from zero to production-ready.
 
-## 目录
+## Table of Contents
 
-- [🚀 新手引导路径](#-新手引导路径)
-- [📊 快速导航](#-快速导航)
-- [🔧 初始化与设置](#-初始化与设置)
-- [🛡️ 加固与安全](#-加固与安全)
-- [🌐 网络与反代](#-网络与反代)
-- [📦 部署](#-部署)
-- [📊 监控](#-监控)
-- [💾 备份与恢复](#-备份与恢复)
-- [🤖 AI 自托管](#-ai-自托管)
-- [🔍 审计与合规](#-审计与合规)
-- [🗃️ 归档 / 历史](#-归档--历史)
-- [🧩 0x10debug 生态](#-0x10debug-生态)
-- [贡献指南](#贡献指南)
-- [许可证](#许可证)
+- [🚀 Getting Started Path](#-getting-started-path)
+- [📊 Quick Navigation](#-quick-navigation)
+- [🔧 Initialization & Setup](#-initialization--setup)
+- [🛡️ Hardening & Security](#-hardening--security)
+- [🌐 Network & Proxy](#-network--proxy)
+- [📦 Deployment](#-deployment)
+- [📊 Monitoring](#-monitoring)
+- [💾 Backup & Recovery](#-backup--recovery)
+- [🤖 AI Self-Hosting](#-ai-self-hosting)
+- [🔍 Audit & Compliance](#-audit--compliance)
+- [🗃️ Archived / Historical](#-archived--historical)
+- [🧩 0x10debug Ecosystem](#-0x10debug-ecosystem)
+- [Contributing](#contributing)
+- [License](#license)
 
-## 活跃度标记
+## Activity Markers
 
-每个工具都带有活跃度标记，反映其源码仓库的健康状态：
+Each tool is tagged with an activity marker reflecting the health of its source repository:
 
-- 🟢 **活跃** — 最近 6 个月内有 commit
-- 🟡 **维护** — 最近 6–12 个月内有 commit
-- 🔴 **停滞** — 12 个月以上无 commit
-- ⚫ **归档** — 仓库已归档/只读
+- 🟢 **Active** — commit within the last 6 months
+- 🟡 **Maintained** — commit within the last 6–12 months
+- 🔴 **Stagnant** — no commit in 12+ months
+- ⚫ **Archived** — repository is archived/read-only
 
-标记由 `scripts/update-metadata.sh` 通过 GitHub API 刷新。运行 `./scripts/update-metadata.sh --check` 查看最新报告。
+Markers are refreshed by `scripts/update-metadata.sh` (GitHub API). Run `./scripts/update-metadata.sh --check` to inspect the latest report.
 
 ---
 
-## 🚀 新手引导路径
+## 🚀 Getting Started Path
 
-刚接触 VPS？以下是从裸机到生产就绪的完整路径：
+New to VPS? Here's the path from a fresh server to production-ready:
 
-### 第 1 步：安全加固服务器（10 分钟）
+### Step 1: Secure Your Server (10 min)
 
-在安装任何东西之前，先锁定你的服务器。更新系统、创建非 root 用户并配置 SSH 密钥、禁用 root 登录、开启防火墙。
+Before installing anything, lock down your server. Update the system, create a non-root user with SSH keys, disable root login, and enable a firewall.
 
-→ 使用 [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) 一条命令完成，或手动操作：
-`apt update && apt upgrade` → 创建用户 → 添加 SSH 密钥 → 编辑 `sshd_config` → 启用 UFW。
+→ Use [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) for a one-command setup, or do it manually:
+`apt update && apt upgrade` → create user → add SSH key → edit `sshd_config` → enable UFW.
 
-### 第 2 步：安装 Docker（5 分钟）
+### Step 2: Install Docker (5 min)
 
-容器化是 VPS 部署服务的标准方式。Docker 让应用隔离运行、易于更新。
+Containerization is the standard way to deploy services on a VPS. Docker keeps your apps isolated and easy to update.
 
-→ [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) 包含 Docker 安装，或手动安装 [Docker Engine](https://docs.docker.com/engine/install/) + [Docker Compose](https://docs.docker.com/compose/)。
+→ [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap) includes Docker installation, or install [Docker Engine](https://docs.docker.com/engine/install/) + [Docker Compose](https://docs.docker.com/compose/) manually.
 
-### 第 3 步：配置反向代理（15 分钟）
+### Step 3: Set Up Reverse Proxy (15 min)
 
-反向代理将流量路由到你的服务，并自动管理 SSL 证书。这是通过 HTTPS 安全暴露应用的方式。
+A reverse proxy routes traffic to your services and manages SSL certificates automatically. This is how you expose apps securely with HTTPS.
 
-→ 使用 [network-toolkit](https://github.com/0x10debug/network-toolkit) 获取预配置模板，或选择 [Caddy](https://caddyserver.com/)、[Traefik](https://traefik.io/)、[Nginx Proxy Manager](https://nginxproxymanager.com/)。
+→ Use [network-toolkit](https://github.com/0x10debug/network-toolkit) for pre-configured templates, or pick [Caddy](https://caddyserver.com/), [Traefik](https://traefik.io/), or [Nginx Proxy Manager](https://nginxproxymanager.com/).
 
-### 第 4 步：部署你的第一个应用（10 分钟）
+### Step 4: Deploy Your First App (10 min)
 
-选择一个 Docker Compose 食谱并运行。从简单的开始——也许是一个媒体服务器或密码管理器。
+Choose a Docker Compose recipe and run it. Start simple—maybe a media server or a password manager.
 
-→ 浏览 [compose-recipes](https://github.com/0x10debug/compose-recipes) 获取场景化套件，或在 [linuxserver.io](https://docs.linuxserver.io/) 找单个应用的 compose 文件。
+→ Browse [compose-recipes](https://github.com/0x10debug/compose-recipes) for scenario-based suites, or find individual app compose files on [linuxserver.io](https://docs.linuxserver.io/).
 
-### 第 5 步：设置监控（5 分钟）
+### Step 5: Set Up Monitoring (5 min)
 
-知道你的服务什么时候挂了。一个简单的可用性监控几分钟就能搭好，让你不用从用户投诉中发现宕机。
+Know when your services go down. A simple uptime monitor takes minutes to set up and saves you from discovering outages from user complaints.
 
-→ 部署 [monitor-stack](https://github.com/0x10debug/monitor-stack) 或安装 [Uptime Kuma](https://github.com/louislam/uptime-kuma) + [Beszel](https://github.com/henrygd/beszel)。
+→ Deploy [monitor-stack](https://github.com/0x10debug/monitor-stack) or install [Uptime Kuma](https://github.com/louislam/uptime-kuma) + [Beszel](https://github.com/henrygd/beszel).
 
-### 第 6 步：配置备份（10 分钟）
+### Step 6: Configure Backups (10 min)
 
-从没测试过的备份只是美好的愿望。设置加密的自动备份，并执行一次恢复演练。
+A backup you've never tested is just a hope. Set up encrypted, automated backups and run a restore drill.
 
-→ 使用 [backup-kit](https://github.com/0x10debug/backup-kit) 获取预配置策略，或手动配置 [Restic](https://restic.net/) / [Kopia](https://kopia.io/)。
+→ Use [backup-kit](https://github.com/0x10debug/backup-kit) for pre-configured strategies, or set up [Restic](https://restic.net/) / [Kopia](https://kopia.io/) manually.
 
-### 第 7 步：运行安全审计（15 分钟）
+### Step 7: Run a Security Audit (15 min)
 
-检查你的配置是否有弱点。SSH 设置是否合规？容器镜像是否有漏洞？配置是否偏离了基线？
+Check your configuration for weaknesses. Are your SSH settings compliant? Are your container images vulnerable? Has any config drifted from baseline?
 
-→ 运行 [security-audit](https://github.com/0x10debug/security-audit) 或使用 [Lynis](https://cisofy.com/lynis/)。
+→ Run [security-audit](https://github.com/0x10debug/security-audit) or use [Lynis](https://cisofy.com/lynis/).
 
-🎉 **你的 VPS 现在生产就绪了。**
+🎉 **Your VPS is now production-ready.**
 
 ---
 """,
@@ -310,7 +310,7 @@ Contributions are welcome! To add a tool:
   activity_status: active     # active | maintained | stagnant | archived
   description:
     en: "One-line description of what it does."
-    zh: "一句话描述它的功能。"
+    zh: "One-line description of what it does."
 ```
 
 The `activity_status` field maps to an **activity marker**, refreshed automatically by `scripts/update-metadata.sh`. Use `active` (🟢) for new entries; the script will correct it on the next run if the repo is less active.
@@ -345,58 +345,58 @@ Tools that become 🔴 or ⚫ are moved to the [Archived / Historical](#-archive
 
 [MIT](./LICENSE)
 """,
-"zh": """## 贡献指南
+"zh": """## Contributing
 
-欢迎贡献！添加工具的步骤：
+Contributions are welcome! To add a tool:
 
-1. Fork 本仓库
-2. 在 `data/tools.yaml`（单一数据源）中添加工具
-3. 运行 `./scripts/generate-readme.sh --lang all` 重新生成 `README.md` 和 `README.zh.md`
-4. 运行 `./scripts/validate-links.sh` 确认链接可达
-5. 提交 Pull Request
+1. Fork this repository
+2. Add the tool to `data/tools.yaml` (the single source of truth)
+3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md` and `README.zh.md`
+4. Run `./scripts/validate-links.sh` to confirm links are reachable
+5. Submit a pull request
 
-### 条目格式（YAML）
+### Entry Format (YAML)
 
 ```yaml
-- name: 工具名
+- name: Tool Name
   url: https://github.com/user/repo
-  category: deployment        # data/tools.yaml 中定义的分类 id
-  language: Go                # 主要实现语言
+  category: deployment        # one of the category ids in data/tools.yaml
+  language: Go                # primary implementation language
   activity_status: active     # active | maintained | stagnant | archived
   description:
     en: "One-line description of what it does."
-    zh: "一句话描述它的功能。"
+    zh: "One-line description of what it does."
 ```
 
-`activity_status` 字段对应**活跃度标记**，由 `scripts/update-metadata.sh` 自动刷新。新条目先用 `active`（🟢），下次脚本运行时会按仓库实际活跃度修正。
+The `activity_status` field maps to an **activity marker**, refreshed automatically by `scripts/update-metadata.sh`. Use `active` (🟢) for new entries; the script will correct it on the next run if the repo is less active.
 
-### 活跃度标记
+### Activity Markers
 
-- 🟢 **活跃** — 最近 6 个月内有 commit
-- 🟡 **维护** — 最近 6–12 个月内有 commit
-- 🔴 **停滞** — 12 个月以上无 commit
-- ⚫ **归档** — 仓库已归档/只读
+- 🟢 **Active** — commit within the last 6 months
+- 🟡 **Maintained** — commit within the last 6–12 months
+- 🔴 **Stagnant** — no commit in 12+ months
+- ⚫ **Archived** — repository is archived/read-only
 
-变为 🔴 或 ⚫ 的工具会移到[归档 / 历史](#-归档--历史)小节。
+Tools that become 🔴 or ⚫ are moved to the [Archived / Historical](#-archived--historical) section.
 
-### 准则
+### Guidelines
 
-- 工具必须开源（或有免费的自托管版本）
-- 描述必须原创（不要复制工具的 README）
-- 放在正确的分类下
-- 同时提供 `en` 和 `zh` 描述
-- 每个分类应有 3–15 个工具；必要时拆分或合并分类
+- Tools must be open-source (or have a free self-hostable tier)
+- Description must be original (don't copy the tool's README)
+- Place in the correct category
+- Provide both `en` and `zh` descriptions
+- Each category should contain 3–15 tools; split or merge categories if needed
 
-### 脚本
+### Scripts
 
-- `scripts/generate-readme.sh` — 从 `data/tools.yaml` 生成 README.md / README.zh.md（`--lang en|zh|all`，`--check` 校验是否一致）
-- `scripts/update-metadata.sh` — 通过 GitHub API 刷新活跃度标记（`--check` 仅报告，`--update` 改写 YAML + README）
-- `scripts/validate-links.sh` — 校验 README 中所有链接可达（`--timeout 秒数`）
-- `scripts/check-links.sh` — 旧版链接检查器
+- `scripts/generate-readme.sh` — render README.md / README.zh.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
+- `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite YAML + READMEs)
+- `scripts/validate-links.sh` — verify all README links are reachable (`--timeout SECONDS`)
+- `scripts/check-links.sh` — legacy link checker
 
 ---
 
-## 许可证
+## License
 
 [MIT](./LICENSE)
 """,
@@ -442,43 +442,43 @@ def anchor_slug(emoji, title):
 CATEGORY_SUMMARIES = {
     "init": {
         "en": "First minutes after getting a fresh server",
-        "zh": "拿到新服务器后的最初几分钟",
+        "zh": "First minutes after getting a fresh server",
     },
     "hardening": {
         "en": "SSH, firewall, fail2ban, baseline hardening",
-        "zh": "SSH、防火墙、fail2ban、基线加固",
+        "zh": "SSH, firewall, fail2ban, baseline hardening",
     },
     "network": {
         "en": "Reverse proxy, SSL, tunneling, DNS",
-        "zh": "反向代理、SSL、隧道、DNS",
+        "zh": "Reverse proxy, SSL, tunneling, DNS",
     },
     "deployment": {
         "en": "Docker Compose recipes and app suites",
-        "zh": "Docker Compose 食谱和应用套件",
+        "zh": "Docker Compose recipes and app suites",
     },
     "monitoring": {
         "en": "Uptime, metrics, logs, alerting",
-        "zh": "可用性、指标、日志、告警",
+        "zh": "Uptime, metrics, logs, alerting",
     },
     "backup": {
         "en": "Encrypted backup, restore drills, 3-2-1",
-        "zh": "加密备份、恢复演练、3-2-1 策略",
+        "zh": "Encrypted backup, restore drills, 3-2-1",
     },
     "ai": {
         "en": "Ollama, Open WebUI, RAG, LiteLLM",
-        "zh": "Ollama、Open WebUI、RAG、LiteLLM",
+        "zh": "Ollama, Open WebUI, RAG, LiteLLM",
     },
     "audit": {
         "en": "CIS benchmark, Lynis, drift detection",
-        "zh": "CIS 基线、Lynis、漂移检测",
+        "zh": "CIS benchmark, Lynis, drift detection",
     },
     "archived": {
         "en": "Historical tools no longer actively maintained",
-        "zh": "已不再活跃维护的历史工具",
+        "zh": "Historical tools no longer actively maintained",
     },
     "ecosystem": {
         "en": "Our integrated tool suite",
-        "zh": "我们的集成工具套件",
+        "zh": "Our integrated tool suite",
     },
 }
 
@@ -492,9 +492,9 @@ def render_quick_nav(lang):
         lines.append("| Category | Tools | What it covers |")
         lines.append("|---|---|---|")
     else:
-        lines.append("## 📊 快速导航")
+        lines.append("## 📊 Quick Navigation")
         lines.append("")
-        lines.append("| 分类 | 工具数 | 覆盖范围 |")
+        lines.append("| Category | Tools | What it covers |")
         lines.append("|---|---|---|")
 
     total = 0
@@ -518,8 +518,8 @@ def render_quick_nav(lang):
         lines.append(f"**Total: {total} tools** across {active_cats} active categories"
                      + (f" (+{archived_cats} archived)." if archived_cats else "."))
     else:
-        lines.append(f"**共 {total} 个工具**，分布在 {active_cats} 个活跃分类中"
-                     + (f"（+{archived_cats} 个归档）。" if archived_cats else "。"))
+        lines.append(f"**Total: {total} tools** across {active_cats} active categories"
+                     + (f" (+{archived_cats} archived)." if archived_cats else "."))
     lines.append("")
     # Activity breakdown sub-section
     lines.append(render_stats(lang))
@@ -544,12 +544,12 @@ def render_stats(lang):
         lines.append(f"- 🔴 **Stagnant**: {status_counts.get('stagnant', 0)}")
         lines.append(f"- ⚫ **Archived**: {status_counts.get('archived', 0)}")
     else:
-        lines.append("### 活跃度分布")
+        lines.append("### Activity Breakdown")
         lines.append("")
-        lines.append(f"- 🟢 **活跃**: {status_counts.get('active', 0)}")
-        lines.append(f"- 🟡 **维护**: {status_counts.get('maintained', 0)}")
-        lines.append(f"- 🔴 **停滞**: {status_counts.get('stagnant', 0)}")
-        lines.append(f"- ⚫ **归档**: {status_counts.get('archived', 0)}")
+        lines.append(f"- 🟢 **Active**: {status_counts.get('active', 0)}")
+        lines.append(f"- 🟡 **Maintained**: {status_counts.get('maintained', 0)}")
+        lines.append(f"- 🔴 **Stagnant**: {status_counts.get('stagnant', 0)}")
+        lines.append(f"- ⚫ **Archived**: {status_counts.get('archived', 0)}")
     lines.append("")
     return "\n".join(lines)
 
@@ -557,11 +557,11 @@ def render_stats(lang):
 def render_readme(lang):
     # The HEADER template ends with "---\n" after the Activity Markers section,
     # followed by the Getting Started Path. We split the header at the
-    # "## 🚀 Getting Started Path" / "## 🚀 新手引导路径" marker to insert
+    # "## 🚀 Getting Started Path" marker to insert
     # the dynamic Quick Navigation + Stats sections in between.
     header = HEADER[lang]
     gs_marker_en = "## 🚀 Getting Started Path"
-    gs_marker_zh = "## 🚀 新手引导路径"
+    gs_marker_zh = "## 🚀 Getting Started Path"
     gs_marker = gs_marker_en if lang == "en" else gs_marker_zh
 
     idx = header.find(gs_marker)

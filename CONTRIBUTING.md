@@ -22,7 +22,7 @@ The tool list is generated from a single YAML data source: **`data/tools.yaml`**
   activity_status: active     # active | maintained | stagnant | archived
   description:
     en: "One-line description of what it does."
-    zh: "一句话描述它的功能。"
+    zh: "One-line description of what it does."
 ```
 
 The `activity_status` field maps to an **activity marker** (see below). Use `active` for new entries; `scripts/update-metadata.sh` will correct it on the next run based on the repo's real activity.
@@ -31,7 +31,7 @@ The `activity_status` field maps to an **activity marker** (see below). Use `act
 
 | Field | Requirement | Example |
 |---|---|---|
-| **name** | Display name (string or `{en, zh}`) | `Ollama` or `{en: Nezha, zh: 哪吒探针}` |
+| **name** | Display name (string or `{en, zh}`) | `Ollama` or `{en: Nezha, zh: Nezha}` |
 | **url** | Canonical link to the official repo or website | `https://github.com/ollama/ollama` |
 | **description** | `{en, zh}` one sentence each, original wording | `en: Run Llama, Mistral, Phi locally.` |
 | **category** | One of the category ids in `data/tools.yaml` | `deployment` |

@@ -47,97 +47,97 @@ categories:
     emoji: "🔧"
     title:
       en: "Initialization & Setup"
-      zh: "初始化与设置"
+      zh: "Initialization & Setup"
     intro:
       en: "Tools for the first few minutes after you get a fresh server."
-      zh: "拿到新服务器后最初几分钟要用的工具。"
+      zh: "Tools for the first few minutes after you get a fresh server."
 
   - id: hardening
     emoji: "🛡️"
     title:
       en: "Hardening & Security"
-      zh: "加固与安全"
+      zh: "Hardening & Security"
     intro:
       en: "Tools to protect your server from attacks."
-      zh: "保护服务器免受攻击的工具。"
+      zh: "Tools to protect your server from attacks."
 
   - id: network
     emoji: "🌐"
     title:
       en: "Network & Proxy"
-      zh: "网络与反代"
+      zh: "Network & Proxy"
     intro:
       en: "Tools for exposing services, managing SSL, and traversing NAT."
-      zh: "暴露服务、管理 SSL、穿透内网的工具。"
+      zh: "Tools for exposing services, managing SSL, and traversing NAT."
 
   - id: deployment
     emoji: "📦"
     title:
       en: "Deployment"
-      zh: "部署"
+      zh: "Deployment"
     intro:
       en: "Tools for deploying and managing applications on your VPS."
-      zh: "在 VPS 上部署和管理应用的工具。"
+      zh: "Tools for deploying and managing applications on your VPS."
 
   - id: monitoring
     emoji: "📊"
     title:
       en: "Monitoring"
-      zh: "监控"
+      zh: "Monitoring"
     intro:
       en: "Tools to know if your services are up and your server is healthy."
-      zh: "了解服务是否在线、服务器是否健康的工具。"
+      zh: "Tools to know if your services are up and your server is healthy."
 
   - id: backup
     emoji: "💾"
     title:
       en: "Backup & Recovery"
-      zh: "备份与恢复"
+      zh: "Backup & Recovery"
     intro:
       en: "Tools to ensure your data survives disasters."
-      zh: "确保数据在灾难中存活下来的工具。"
+      zh: "Tools to ensure your data survives disasters."
 
   - id: ai
     emoji: "🤖"
     title:
       en: "AI Self-Hosting"
-      zh: "AI 自托管"
+      zh: "AI Self-Hosting"
     intro:
       en: "Tools to run AI models on your own server."
-      zh: "在自己的服务器上运行 AI 模型的工具。"
+      zh: "Tools to run AI models on your own server."
 
   - id: audit
     emoji: "🔍"
     title:
       en: "Audit & Compliance"
-      zh: "审计与合规"
+      zh: "Audit & Compliance"
     intro:
       en: "Tools to check your server for vulnerabilities and compliance."
-      zh: "检查服务器漏洞和合规性的工具。"
+      zh: "Tools to check your server for vulnerabilities and compliance."
 
   - id: archived
     emoji: "🗃️"
     title:
       en: "Archived / Historical"
-      zh: "归档 / 历史"
+      zh: "Archived / Historical"
     intro:
       en: "Tools that were once useful but whose upstream repositories are now archived. Kept here for reference; prefer the active alternatives above."
-      zh: "曾经有用、但上游仓库现已归档的工具。保留在此供参考；请优先使用上方的活跃替代品。"
+      zh: "Tools that were once useful but whose upstream repositories are now archived. Kept here for reference; prefer the active alternatives above."
     note:
       en: "Know an archived VPS tool that should be listed here? Open an issue or PR."
-      zh: "知道其他已归档的 VPS 工具？欢迎提 issue 或 PR。"
+      zh: "Know an archived VPS tool that should be listed here? Open an issue or PR."
 
   - id: ecosystem
     emoji: "🧩"
     title:
       en: "0x10debug Ecosystem"
-      zh: "0x10debug 生态"
+      zh: "0x10debug Ecosystem"
     intro:
       en: "The repos below, maintained under the [0x10debug](https://github.com/0x10debug) account, form a complete VPS operations + security toolchain. Each one is designed to be composable: bootstrap a server, harden it, deploy apps, monitor, back up, and audit—end to end."
-      zh: "以下仓库由 [0x10debug](https://github.com/0x10debug) 账号维护，构成完整的 VPS 运营 + 安全工具链。每个都可组合使用：初始化服务器、加固、部署应用、监控、备份、审计——端到端覆盖。"
+      zh: "The repos below, maintained under the [0x10debug](https://github.com/0x10debug) account, form a complete VPS operations + security toolchain. Each one is designed to be composable: bootstrap a server, harden it, deploy apps, monitor, back up, and audit—end to end."
     outro:
       en: "Together they cover the full VPS lifecycle: **bootstrap → harden → deploy → monitor → back up → audit**."
-      zh: "它们共同覆盖完整的 VPS 生命周期：**初始化 → 加固 → 部署 → 监控 → 备份 → 审计**。"
+      zh: "Together they cover the full VPS lifecycle: **bootstrap → harden → deploy → monitor → back up → audit**."
 
 # =============================================================================
 # Tools
@@ -154,7 +154,7 @@ tools:
     activity_status: active
     description:
       en: "One-command VPS initialization and security hardening with CrowdSec, Docker, and MOTD dashboard."
-      zh: "一条命令完成 VPS 初始化和安全加固，集成 CrowdSec、Docker 和 MOTD 仪表盘。"
+      zh: "One-command VPS initialization and security hardening with CrowdSec, Docker, and MOTD dashboard."
 
   - name: vpskit
     url: https://github.com/mariusdjen/vpskit
@@ -163,7 +163,7 @@ tools:
     activity_status: active
     description:
       en: "9-step interactive VPS setup: updates, user creation, SSH hardening, firewall, Docker, Caddy."
-      zh: "9 步交互式 VPS 设置：更新、用户创建、SSH 加固、防火墙、Docker、Caddy。"
+      zh: "9-step interactive VPS setup: updates, user creation, SSH hardening, firewall, Docker, Caddy."
 
   - name: bento
     url: https://github.com/felipefontoura/bento
@@ -172,7 +172,7 @@ tools:
     activity_status: active
     description:
       en: "Turns a fresh VPS into a hardened Docker Swarm with Traefik, Portainer, and TLS in 15 minutes."
-      zh: "15 分钟将裸 VPS 变成带 Traefik、Portainer 和 TLS 的 Docker Swarm。"
+      zh: "Turns a fresh VPS into a hardened Docker Swarm with Traefik, Portainer, and TLS in 15 minutes."
 
   - name: vpsarmor
     url: https://github.com/flegoff/vpsarmor
@@ -181,7 +181,7 @@ tools:
     activity_status: maintained
     description:
       en: "Security boilerplate for Ubuntu LTS and Debian servers. KISS philosophy, 5 layers of protection."
-      zh: "Ubuntu LTS 和 Debian 服务器的安全加固模板。KISS 原则，5 层防护。"
+      zh: "Security boilerplate for Ubuntu LTS and Debian servers. KISS philosophy, 5 layers of protection."
 
   - name: linvpsliteinit
     url: https://github.com/tonysbb/linvpsliteinit
@@ -190,7 +190,7 @@ tools:
     activity_status: active
     description:
       en: "Lightweight VPS setup toolkit for Debian, Ubuntu, and Alpine. Init once, add components later."
-      zh: "轻量级 VPS 设置工具包，支持 Debian、Ubuntu 和 Alpine。初始化一次，后续按需添加组件。"
+      zh: "Lightweight VPS setup toolkit for Debian, Ubuntu, and Alpine. Init once, add components later."
 
   # ---------------------------------------------------------------------------
   # Hardening & Security
@@ -202,7 +202,7 @@ tools:
     activity_status: active
     description:
       en: "Modern intrusion prevention with crowdsourced threat intelligence. Replaces fail2ban with community blocklists and multi-layer bouncers."
-      zh: "现代入侵防护系统，众包威胁情报。用社区封禁列表和多层 bouncer 替代 fail2ban。"
+      zh: "Modern intrusion prevention with crowdsourced threat intelligence. Replaces fail2ban with community blocklists and multi-layer bouncers."
 
   - name: fail2ban
     url: https://github.com/fail2ban/fail2ban
@@ -211,7 +211,7 @@ tools:
     activity_status: active
     description:
       en: "Classic brute-force protection. Blocks IPs after repeated failed login attempts."
-      zh: "经典的暴力破解防护。多次登录失败后自动封禁 IP。"
+      zh: "Classic brute-force protection. Blocks IPs after repeated failed login attempts."
 
   - name: security-audit
     url: https://github.com/0x10debug/security-audit
@@ -220,7 +220,7 @@ tools:
     activity_status: active
     description:
       en: "VPS security auditor with CIS Benchmark checks, drift detection, and one-click fixes."
-      zh: "VPS 安全审计工具，CIS Benchmark 检查、配置漂移检测、一键修复。"
+      zh: "VPS security auditor with CIS Benchmark checks, drift detection, and one-click fixes."
 
   - name: Lynis
     url: https://cisofy.com/lynis/
@@ -229,7 +229,7 @@ tools:
     activity_status: active
     description:
       en: "Security auditing tool for Unix-based systems. Reports hardening suggestions."
-      zh: "Unix 系统安全审计工具。输出详细的加固建议。"
+      zh: "Security auditing tool for Unix-based systems. Reports hardening suggestions."
 
   - name: OSSEC
     url: https://www.ossec.net/
@@ -238,7 +238,7 @@ tools:
     activity_status: active
     description:
       en: "Host-based intrusion detection system. Monitors logs, detects rootkits, alerts on anomalies."
-      zh: "基于主机的入侵检测系统。监控日志、检测 rootkit、异常告警。"
+      zh: "Host-based intrusion detection system. Monitors logs, detects rootkits, alerts on anomalies."
 
   - name: ssh-audit
     url: https://github.com/jtesta/ssh-audit
@@ -247,7 +247,7 @@ tools:
     activity_status: active
     description:
       en: "SSH server and client configuration auditor. Checks host keys, algorithms, and policy compliance."
-      zh: "SSH 服务端与客户端配置审计工具。检查主机密钥、算法和策略合规性。"
+      zh: "SSH server and client configuration auditor. Checks host keys, algorithms, and policy compliance."
 
   - name: CIS-CAT
     url: https://learn.cisecurity.org/cis-cat-pro-quiz
@@ -256,7 +256,7 @@ tools:
     activity_status: maintained
     description:
       en: "CIS Benchmark configuration assessment tool. Professional compliance scanning."
-      zh: "CIS Benchmark 配置评估工具。专业级合规扫描。"
+      zh: "CIS Benchmark configuration assessment tool. Professional compliance scanning."
 
   # ---------------------------------------------------------------------------
   # Network & Proxy
@@ -268,7 +268,7 @@ tools:
     activity_status: active
     description:
       en: "Reverse proxy, SSL, tunnel, and DDNS combined into deployable templates for VPS."
-      zh: "反向代理、SSL、内网穿透、DDNS 组合成可部署模板，专为 VPS 设计。"
+      zh: "Reverse proxy, SSL, tunnel, and DDNS combined into deployable templates for VPS."
 
   - name: Caddy
     url: https://github.com/caddyserver/caddy
@@ -277,7 +277,7 @@ tools:
     activity_status: active
     description:
       en: "Web server with automatic HTTPS. Simplest reverse proxy for self-hosted apps."
-      zh: "自动 HTTPS 的 Web 服务器。最简单的自托管反代方案。"
+      zh: "Web server with automatic HTTPS. Simplest reverse proxy for self-hosted apps."
 
   - name: Traefik
     url: https://github.com/traefik/traefik
@@ -286,7 +286,7 @@ tools:
     activity_status: active
     description:
       en: "Cloud-native reverse proxy with Docker label routing and automatic service discovery."
-      zh: "云原生反向代理，支持 Docker label 路由和自动服务发现。"
+      zh: "Cloud-native reverse proxy with Docker label routing and automatic service discovery."
 
   - name: Nginx Proxy Manager
     url: https://github.com/NginxProxyManager/nginx-proxy-manager
@@ -295,7 +295,7 @@ tools:
     activity_status: active
     description:
       en: "Nginx reverse proxy with web GUI, free SSL via Let's Encrypt."
-      zh: "带 Web 界面的 Nginx 反代，免费 Let's Encrypt SSL。"
+      zh: "Nginx reverse proxy with web GUI, free SSL via Let's Encrypt."
 
   - name: SWAG
     url: https://github.com/linuxserver/docker-swag
@@ -304,7 +304,7 @@ tools:
     activity_status: active
     description:
       en: "Nginx + auto SSL + pre-built reverse proxy configs by linuxserver.io."
-      zh: "Nginx + 自动 SSL + linuxserver.io 预置反代配置。"
+      zh: "Nginx + auto SSL + pre-built reverse proxy configs by linuxserver.io."
 
   - name: acme.sh
     url: https://github.com/acmesh-official/acme.sh
@@ -313,7 +313,7 @@ tools:
     activity_status: active
     description:
       en: "Pure shell ACME client. Supports multiple CAs and DNS API providers."
-      zh: "纯 Shell 实现的 ACME 客户端。支持多家 CA 和 DNS API。"
+      zh: "Pure shell ACME client. Supports multiple CAs and DNS API providers."
 
   - name: frp
     url: https://github.com/fatedier/frp
@@ -322,7 +322,7 @@ tools:
     activity_status: active
     description:
       en: "Fast reverse proxy for NAT traversal. Expose local services through a public server."
-      zh: "快速反向代理，用于 NAT 穿透。通过公网服务器暴露本地服务。"
+      zh: "Fast reverse proxy for NAT traversal. Expose local services through a public server."
 
   - name: rathole
     url: https://github.com/rathole-org/rathole
@@ -331,7 +331,7 @@ tools:
     activity_status: active
     description:
       en: "Lightweight, high-performance alternative to frp, written in Rust."
-      zh: "轻量高性能的 frp 替代品，Rust 编写。"
+      zh: "Lightweight, high-performance alternative to frp, written in Rust."
 
   - name: Tailscale
     url: https://github.com/tailscale/tailscale
@@ -340,7 +340,7 @@ tools:
     activity_status: active
     description:
       en: "WireGuard-based mesh VPN with zero config. Connect your devices securely."
-      zh: "基于 WireGuard 的零配置 mesh VPN。安全连接你的设备。"
+      zh: "WireGuard-based mesh VPN with zero config. Connect your devices securely."
 
   - name: Headscale
     url: https://github.com/juanfont/headscale
@@ -349,7 +349,7 @@ tools:
     activity_status: active
     description:
       en: "Self-hosted, open-source control server for Tailscale. Run your own mesh VPN."
-      zh: "可自托管的开源 Tailscale 控制服务器。搭建你自己的 mesh VPN。"
+      zh: "Self-hosted, open-source control server for Tailscale. Run your own mesh VPN."
 
   - name: NetBird
     url: https://github.com/netbirdio/netbird
@@ -358,7 +358,7 @@ tools:
     activity_status: active
     description:
       en: "Self-hosted WireGuard mesh VPN with SSO, MFA, and web UI."
-      zh: "可自托管的 WireGuard mesh VPN，支持 SSO、MFA 和 Web 界面。"
+      zh: "Self-hosted WireGuard mesh VPN with SSO, MFA, and web UI."
 
   - name: WireGuard
     url: https://www.wireguard.com/
@@ -367,7 +367,7 @@ tools:
     activity_status: active
     description:
       en: "Fast, modern VPN protocol. Use [wireguard-install](https://github.com/angristan/wireguard-install) for one-click setup."
-      zh: "快速、现代的 VPN 协议。用 [wireguard-install](https://github.com/angristan/wireguard-install) 一键安装。"
+      zh: "Fast, modern VPN protocol. Use [wireguard-install](https://github.com/angristan/wireguard-install) for one-click setup."
 
   - name: ddns-go
     url: https://github.com/jeessy2/ddns-go
@@ -376,7 +376,7 @@ tools:
     activity_status: active
     description:
       en: "Automatic DDNS client with web UI. Supports Cloudflare, Aliyun, Tencent, and more."
-      zh: "自动 DDNS 客户端，带 Web 界面。支持 Cloudflare、阿里云、腾讯云等。"
+      zh: "Automatic DDNS client with web UI. Supports Cloudflare, Aliyun, Tencent, and more."
 
   - name: Cloudflare Tunnel
     url: https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/
@@ -385,7 +385,7 @@ tools:
     activity_status: active
     description:
       en: "Expose services without opening inbound ports. Outbound-only tunnel to Cloudflare edge."
-      zh: "无需开放入站端口即可暴露服务。仅出站隧道连接 Cloudflare 边缘。"
+      zh: "Expose services without opening inbound ports. Outbound-only tunnel to Cloudflare edge."
 
   # ---------------------------------------------------------------------------
   # Deployment
@@ -397,7 +397,7 @@ tools:
     activity_status: active
     description:
       en: "Container platform. The foundation of modern VPS deployment."
-      zh: "容器平台。现代 VPS 部署的基石。"
+      zh: "Container platform. The foundation of modern VPS deployment."
 
   - name: Docker Compose
     url: https://github.com/docker/compose
@@ -406,7 +406,7 @@ tools:
     activity_status: active
     description:
       en: "Define and run multi-container applications. Essential for self-hosting."
-      zh: "定义和运行多容器应用。自托管必备。"
+      zh: "Define and run multi-container applications. Essential for self-hosting."
 
   - name: compose-recipes
     url: https://github.com/0x10debug/compose-recipes
@@ -415,7 +415,7 @@ tools:
     activity_status: active
     description:
       en: "Scenario-based Docker Compose suites for self-hosted apps. Home media, productivity, dev environment, and more."
-      zh: "场景化 Docker Compose 套件。家庭媒体、个人生产力、开发环境等。"
+      zh: "Scenario-based Docker Compose suites for self-hosted apps. Home media, productivity, dev environment, and more."
 
   - name: Coolify
     url: https://github.com/coollabsio/coolify
@@ -424,7 +424,7 @@ tools:
     activity_status: active
     description:
       en: "Open-source self-hostable PaaS. Deploy apps and databases with 280+ one-click services."
-      zh: "开源可自托管 PaaS。280+ 一键部署服务和数据库。"
+      zh: "Open-source self-hostable PaaS. Deploy apps and databases with 280+ one-click services."
 
   - name: Dokploy
     url: https://github.com/Dokploy/dokploy
@@ -433,7 +433,7 @@ tools:
     activity_status: active
     description:
       en: "Lightweight PaaS with native Docker Compose support. Minimal footprint for small VPS."
-      zh: "轻量 PaaS，原生支持 Docker Compose。适合小型 VPS。"
+      zh: "Lightweight PaaS with native Docker Compose support. Minimal footprint for small VPS."
 
   - name: CapRover
     url: https://github.com/caprover/caprover
@@ -442,7 +442,7 @@ tools:
     activity_status: active
     description:
       en: "Self-hosted PaaS with Docker Swarm and large one-click app library."
-      zh: "基于 Docker Swarm 的自托管 PaaS，大量一键应用。"
+      zh: "Self-hosted PaaS with Docker Swarm and large one-click app library."
 
   - name: 1Panel
     url: https://github.com/1Panel-dev/1Panel
@@ -451,7 +451,7 @@ tools:
     activity_status: active
     description:
       en: "Modern Linux server management panel with app store and AI management."
-      zh: "现代 Linux 服务器管理面板，带应用商店和 AI 管理。"
+      zh: "Modern Linux server management panel with app store and AI management."
 
   - name: Portainer
     url: https://github.com/portainer/portainer
@@ -460,7 +460,7 @@ tools:
     activity_status: active
     description:
       en: "Docker management web UI. Visual container management for all levels."
-      zh: "Docker 管理 Web 界面。可视化容器管理。"
+      zh: "Docker management web UI. Visual container management for all levels."
 
   - name: Umbrel
     url: https://github.com/getumbrel/umbrel
@@ -469,7 +469,7 @@ tools:
     activity_status: active
     description:
       en: "Home server OS with 300+ app store. Beautiful UI, designed for home servers."
-      zh: "家庭服务器 OS，300+ 应用商店。界面精美，专为家庭服务器设计。"
+      zh: "Home server OS with 300+ app store. Beautiful UI, designed for home servers."
 
   - name: Runtipi
     url: https://github.com/runtipi/runtipi
@@ -478,7 +478,7 @@ tools:
     activity_status: active
     description:
       en: "Personal homeserver with one-command setup and one-click app installs."
-      zh: "个人家庭服务器，一条命令安装，一键部署应用。"
+      zh: "Personal homeserver with one-command setup and one-click app installs."
 
   # ---------------------------------------------------------------------------
   # Monitoring
@@ -490,7 +490,7 @@ tools:
     activity_status: active
     description:
       en: "Lightweight monitoring stack: uptime, server metrics, Docker stats, and security alerts in one deploy."
-      zh: "轻量监控栈：可用性、服务器指标、Docker 状态、安全告警一体化部署。"
+      zh: "Lightweight monitoring stack: uptime, server metrics, Docker stats, and security alerts in one deploy."
 
   - name: Uptime Kuma
     url: https://github.com/louislam/uptime-kuma
@@ -499,7 +499,7 @@ tools:
     activity_status: active
     description:
       en: "Fancy self-hosted uptime monitor with 90+ notification channels and status pages."
-      zh: "精美的自托管可用性监控，90+ 通知渠道和状态页。"
+      zh: "Fancy self-hosted uptime monitor with 90+ notification channels and status pages."
 
   - name: Beszel
     url: https://github.com/henrygd/beszel
@@ -508,7 +508,7 @@ tools:
     activity_status: active
     description:
       en: "Lightweight server monitoring with historical data, Docker stats, and alerts."
-      zh: "轻量服务器监控，历史数据、Docker 状态、告警。"
+      zh: "Lightweight server monitoring with historical data, Docker stats, and alerts."
 
   - name: Netdata
     url: https://github.com/netdata/netdata
@@ -517,7 +517,7 @@ tools:
     activity_status: active
     description:
       en: "Real-time infrastructure monitoring with per-second metrics and ML anomaly detection."
-      zh: "实时基础设施监控，每秒指标和 ML 异常检测。"
+      zh: "Real-time infrastructure monitoring with per-second metrics and ML anomaly detection."
 
   - name: Grafana
     url: https://github.com/grafana/grafana
@@ -529,18 +529,18 @@ tools:
         url: https://github.com/prometheus/prometheus
     description:
       en: "Professional metrics and dashboards. Powerful but resource-heavy."
-      zh: "专业指标和仪表盘。功能强大但资源消耗大。"
+      zh: "Professional metrics and dashboards. Powerful but resource-heavy."
 
   - name:
       en: Nezha
-      zh: 哪吒探针
+      zh: Nezha
     url: https://github.com/nezhahq/nezha
     category: monitoring
     language: Go
     activity_status: active
     description:
       en: "Multi-server monitoring panel popular in the Chinese VPS community."
-      zh: "多服务器监控面板，中文 VPS 社区流行。"
+      zh: "Multi-server monitoring panel popular in the Chinese VPS community."
 
   # ---------------------------------------------------------------------------
   # Backup & Recovery
@@ -552,7 +552,7 @@ tools:
     activity_status: active
     description:
       en: "Pre-configured backup strategies for VPS: encrypted, automated, with restore drills and Docker volume support."
-      zh: "VPS 预配置备份策略：加密、自动化、恢复演练、Docker volume 支持。"
+      zh: "Pre-configured backup strategies for VPS: encrypted, automated, with restore drills and Docker volume support."
 
   - name: Restic
     url: https://github.com/restic/restic
@@ -561,7 +561,7 @@ tools:
     activity_status: active
     description:
       en: "Fast, secure, encrypted backup tool with deduplication. CLI standard for server backups."
-      zh: "快速、安全、加密的备份工具，支持去重。服务器备份的 CLI 标杆。"
+      zh: "Fast, secure, encrypted backup tool with deduplication. CLI standard for server backups."
 
   - name: Kopia
     url: https://github.com/kopia/kopia
@@ -570,7 +570,7 @@ tools:
     activity_status: active
     description:
       en: "Encrypted snapshot backup with web UI and multi-backend support."
-      zh: "加密快照备份，带 Web 界面和多后端支持。"
+      zh: "Encrypted snapshot backup with web UI and multi-backend support."
 
   - name: BorgBackup
     url: https://github.com/borgbackup/borg
@@ -579,7 +579,7 @@ tools:
     activity_status: active
     description:
       en: "Deduplicating, compressing, authenticated backup. The engine behind many server backup workflows."
-      zh: "去重、压缩、带认证的备份。许多服务器备份工作流的底层引擎。"
+      zh: "Deduplicating, compressing, authenticated backup. The engine behind many server backup workflows."
 
   - name: Borgmatic
     url: https://github.com/borgmatic-collective/borgmatic
@@ -588,7 +588,7 @@ tools:
     activity_status: active
     description:
       en: "YAML-configured wrapper around BorgBackup. Declarative backup with cron integration."
-      zh: "BorgBackup 的 YAML 配置封装。声明式备份，集成 cron。"
+      zh: "YAML-configured wrapper around BorgBackup. Declarative backup with cron integration."
 
   - name: Duplicati
     url: https://github.com/duplicati/duplicati
@@ -597,7 +597,7 @@ tools:
     activity_status: active
     description:
       en: "Backup tool with web UI and multi-backend support."
-      zh: "带 Web 界面的备份工具，支持多后端。"
+      zh: "Backup tool with web UI and multi-backend support."
 
   - name: rclone
     url: https://github.com/rclone/rclone
@@ -606,7 +606,7 @@ tools:
     activity_status: active
     description:
       en: "Cloud storage Swiss Army knife. Sync, mount, and copy across 70+ backends."
-      zh: "云存储瑞士军刀。同步、挂载、复制，支持 70+ 后端。"
+      zh: "Cloud storage Swiss Army knife. Sync, mount, and copy across 70+ backends."
 
   # ---------------------------------------------------------------------------
   # AI Self-Hosting
@@ -618,7 +618,7 @@ tools:
     activity_status: active
     description:
       en: "One-command AI deployment on VPS: Ollama + Open WebUI with reverse proxy, auth, and model management."
-      zh: "VPS 上一键部署 AI 工作站：Ollama + Open WebUI，带反代、鉴权和模型管理。"
+      zh: "One-command AI deployment on VPS: Ollama + Open WebUI with reverse proxy, auth, and model management."
 
   - name: Ollama
     url: https://github.com/ollama/ollama
@@ -627,7 +627,7 @@ tools:
     activity_status: active
     description:
       en: "Run Llama, Mistral, Phi, Qwen, and other models locally. The standard for self-hosted LLMs."
-      zh: "本地运行 Llama、Mistral、Phi、Qwen 等模型。自托管 LLM 的标准方案。"
+      zh: "Run Llama, Mistral, Phi, Qwen, and other models locally. The standard for self-hosted LLMs."
 
   - name: Open WebUI
     url: https://github.com/open-webui/open-webui
@@ -636,7 +636,7 @@ tools:
     activity_status: active
     description:
       en: "ChatGPT-style frontend for Ollama and OpenAI-compatible APIs. Feature-rich, offline-capable."
-      zh: "ChatGPT 风格的 Ollama 和 OpenAI 兼容 API 前端。功能丰富，支持离线。"
+      zh: "ChatGPT-style frontend for Ollama and OpenAI-compatible APIs. Feature-rich, offline-capable."
 
   - name: Lobe Chat
     url: https://github.com/lobehub/lobehub
@@ -645,7 +645,7 @@ tools:
     activity_status: active
     description:
       en: "Beautiful multi-model AI chat with plugin ecosystem."
-      zh: "精美的多模型 AI 聊天，带插件生态。"
+      zh: "Beautiful multi-model AI chat with plugin ecosystem."
 
   - name: AnythingLLM
     url: https://github.com/Mintplex-Labs/anything-llm
@@ -654,7 +654,7 @@ tools:
     activity_status: active
     description:
       en: "Document Q&A with vector storage and RAG."
-      zh: "文档问答，集成向量存储和 RAG。"
+      zh: "Document Q&A with vector storage and RAG."
 
   - name: vLLM
     url: https://github.com/vllm-project/vllm
@@ -663,7 +663,7 @@ tools:
     activity_status: active
     description:
       en: "High-throughput LLM inference engine. For GPU servers with serious compute needs."
-      zh: "高吞吐 LLM 推理引擎。适合有 GPU 的服务器。"
+      zh: "High-throughput LLM inference engine. For GPU servers with serious compute needs."
 
   # ---------------------------------------------------------------------------
   # Audit & Compliance
@@ -675,7 +675,7 @@ tools:
     activity_status: active
     description:
       en: "CIS Benchmark compliance, drift detection, container scanning, and auto-fix—designed for VPS."
-      zh: "CIS Benchmark 合规、漂移检测、容器扫描、自动修复——专为 VPS 设计。"
+      zh: "CIS Benchmark compliance, drift detection, container scanning, and auto-fix—designed for VPS."
 
   - name: Lynis
     url: https://cisofy.com/lynis/
@@ -684,7 +684,7 @@ tools:
     activity_status: active
     description:
       en: "Security auditing for Linux/Unix. Detailed hardening suggestions."
-      zh: "Linux/Unix 安全审计。详细的加固建议。"
+      zh: "Security auditing for Linux/Unix. Detailed hardening suggestions."
 
   - name: Trivy
     url: https://github.com/aquasecurity/trivy
@@ -693,7 +693,7 @@ tools:
     activity_status: active
     description:
       en: "Container image and filesystem vulnerability scanner."
-      zh: "容器镜像和文件系统漏洞扫描。"
+      zh: "Container image and filesystem vulnerability scanner."
 
   - name: chkrootkit
     url: http://www.chkrootkit.org/
@@ -702,7 +702,7 @@ tools:
     activity_status: maintained
     description:
       en: "Rootkit detector. Checks for known rootkit signatures."
-      zh: "Rootkit 检测器。检查已知 rootkit 特征。"
+      zh: "Rootkit detector. Checks for known rootkit signatures."
 
   - name: CrowdSec Dashboard
     url: https://app.crowdsec.net/
@@ -711,7 +711,7 @@ tools:
     activity_status: active
     description:
       en: "Visualize attacks blocked by CrowdSec. Threat intelligence at a glance."
-      zh: "可视化 CrowdSec 拦截的攻击。威胁情报一目了然。"
+      zh: "Visualize attacks blocked by CrowdSec. Threat intelligence at a glance."
 
   # ---------------------------------------------------------------------------
   # Archived / Historical
@@ -723,7 +723,7 @@ tools:
     activity_status: archived
     description:
       en: "Customizable dashboard for interacting with Docker containers on a homeserver. Archived upstream; consider [Homepage](https://github.com/gethomepage/homepage) or [Dashy](https://github.com/Lissy93/dashy) instead."
-      zh: "可定制的家庭服务器仪表盘，用于和 Docker 容器交互。上游已归档；可改用 [Homepage](https://github.com/gethomepage/homepage) 或 [Dashy](https://github.com/Lissy93/dashy)。"
+      zh: "Customizable dashboard for interacting with Docker containers on a homeserver. Archived upstream; consider [Homepage](https://github.com/gethomepage/homepage) or [Dashy](https://github.com/Lissy93/dashy) instead."
 
   # ---------------------------------------------------------------------------
   # 0x10debug Ecosystem
@@ -734,7 +734,7 @@ tools:
     activity_status: active
     description:
       en: "VPS security hardening script collection (SSH, firewall, kernel, fail2ban/CrowdSec baselines)."
-      zh: "VPS 安全加固脚本集（SSH、防火墙、内核、fail2ban/CrowdSec 基线）。"
+      zh: "VPS security hardening script collection (SSH, firewall, kernel, fail2ban/CrowdSec baselines)."
 
   - name: vps-bootstrap
     url: https://github.com/0x10debug/vps-bootstrap
@@ -742,7 +742,7 @@ tools:
     activity_status: active
     description:
       en: "VPS initialization CLI: one command from fresh server to hardened, Docker-ready host."
-      zh: "VPS 初始化 CLI：一条命令从裸机到加固、Docker 就绪的主机。"
+      zh: "VPS initialization CLI: one command from fresh server to hardened, Docker-ready host."
 
   - name: compose-recipes
     url: https://github.com/0x10debug/compose-recipes
@@ -750,7 +750,7 @@ tools:
     activity_status: active
     description:
       en: "Docker Compose deployment suites organized by self-hosting scenario."
-      zh: "Docker Compose 部署套件，按自托管场景组织。"
+      zh: "Docker Compose deployment suites organized by self-hosting scenario."
 
   - name: network-toolkit
     url: https://github.com/0x10debug/network-toolkit
@@ -758,7 +758,7 @@ tools:
     activity_status: active
     description:
       en: "Network configuration template library: reverse proxy, SSL, tunnels, DDNS."
-      zh: "网络配置模板库：反向代理、SSL、隧道、DDNS。"
+      zh: "Network configuration template library: reverse proxy, SSL, tunnels, DDNS."
 
   - name: monitor-stack
     url: https://github.com/0x10debug/monitor-stack
@@ -766,7 +766,7 @@ tools:
     activity_status: active
     description:
       en: "Monitoring stack: uptime, server metrics, Docker stats, and security alerts."
-      zh: "监控栈：可用性、服务器指标、Docker 状态、安全告警。"
+      zh: "Monitoring stack: uptime, server metrics, Docker stats, and security alerts."
 
   - name: backup-kit
     url: https://github.com/0x10debug/backup-kit
@@ -774,7 +774,7 @@ tools:
     activity_status: active
     description:
       en: "Backup tooling with pre-configured encrypted strategies and restore drills."
-      zh: "备份工具，预配置加密策略和恢复演练。"
+      zh: "Backup tooling with pre-configured encrypted strategies and restore drills."
 
   - name: security-audit
     url: https://github.com/0x10debug/security-audit
@@ -782,7 +782,7 @@ tools:
     activity_status: active
     description:
       en: "Deep security audit: CIS Benchmark checks, drift detection, container scanning, auto-fix."
-      zh: "深度安全审计：CIS Benchmark 检查、漂移检测、容器扫描、自动修复。"
+      zh: "Deep security audit: CIS Benchmark checks, drift detection, container scanning, auto-fix."
 
   - name: ai-workstation
     url: https://github.com/0x10debug/ai-workstation
@@ -790,4 +790,4 @@ tools:
     activity_status: active
     description:
       en: "AI workstation one-click deploy: Ollama + Open WebUI with reverse proxy and auth."
-      zh: "AI 工作站一键部署：Ollama + Open WebUI，带反代和鉴权。"
+      zh: "AI workstation one-click deploy: Ollama + Open WebUI with reverse proxy and auth."
