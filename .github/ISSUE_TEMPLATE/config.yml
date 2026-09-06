@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions about the list
+    url: https://github.com/0x10debug/awesome-vps#readme
+    about: Browse the README and CONTRIBUTING.md before opening an issue.

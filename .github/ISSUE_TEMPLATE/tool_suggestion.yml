@@ -1,0 +1,60 @@
+name: Tool suggestion
+description: Propose a tool for the list
+labels: ["tool-suggestion"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Tool name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: GitHub repo or official site
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - "init (Initialization & Setup)"
+        - "hardening (Hardening & Security)"
+        - "network (Network & Proxy)"
+        - "deployment (Deployment)"
+        - "monitoring (Monitoring)"
+        - "backup (Backup & Recovery)"
+        - "ai (AI Self-Hosting)"
+        - "audit (Audit & Compliance)"
+    validations:
+      required: true
+  - type: dropdown
+    id: self_hosted
+    attributes:
+      label: Self-hostable
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: e.g. MIT, Apache-2.0 (check the repo)
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why should this be listed?
+      description: What VPS operator problem does it solve, and what does it do better than existing entries?
+    validations:
+      required: true
+  - type: textarea
+    id: maintenance
+    attributes:
+      label: Maintenance evidence
+      description: Recent release/commit activity, maintainer responsiveness - links, not claims.

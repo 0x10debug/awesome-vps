@@ -1,0 +1,30 @@
+name: List bug report
+description: A dead link, wrong metadata, or misplaced entry
+labels: ["list-bug"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Problem
+      options:
+        - Dead link
+        - Wrong category
+        - Wrong or stale metadata (license, description, activity)
+        - Duplicate entry
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: entry
+    attributes:
+      label: Affected entry
+      description: Tool name as it appears in the README
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Details
+      description: What is wrong, and what should it say instead? Include evidence links.
+    validations:
+      required: true
