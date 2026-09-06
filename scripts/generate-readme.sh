@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# generate-readme.sh — Generate README.md / README.zh.md from data/tools.yaml
+# generate-readme.sh — Generate README.md from data/tools.yaml
 #
 # The YAML file data/tools.yaml is the single source of truth for the tool
 # lists. This script renders the awesome-list READMEs from it.
 #
 # Usage:
-#   ./scripts/generate-readme.sh                # generate both en + zh (alias for --lang all)
-#   ./scripts/generate-readme.sh --lang en      # generate README.md only
-#   ./scripts/generate-readme.sh --lang zh      # generate README.zh.md only
-#   ./scripts/generate-readme.sh --lang all     # generate both
+#   ./scripts/generate-readme.sh                # generate README.md (default)
+#   ./scripts/generate-readme.sh --lang en      # same (zh was removed per no-Chinese policy)
+#   ./scripts/generate-readme.sh --lang zh      # accepted for compatibility, generates README.md
+#   ./scripts/generate-readme.sh --lang all     # same
 #   ./scripts/generate-readme.sh --check        # verify READMEs match YAML; exit 1 if drift
 #   ./scripts/generate-readme.sh --check --lang en
 #
@@ -27,9 +27,9 @@ CHECK_ONLY=0
 usage() {
     cat <<EOF
 Usage: $0 [--lang en|zh|all] [--check]
-  Generate README.md / README.zh.md from data/tools.yaml.
+  Generate README.md from data/tools.yaml.
   --check   Verify the READMEs are in sync with the YAML data source; exit 1 on drift.
-  --lang    en | zh | all (default: all)
+  --lang    en | zh | all (all generate README.md; zh is kept as a compatibility alias)
 EOF
     exit 2
 }
@@ -44,7 +44,7 @@ while [ $# -gt 0 ]; do
 done
 
 case "$LANG_TARGET" in
-    en|zh|all) ;;
+    en|zh|all) LANG_TARGET="en" ;;
     *) echo "Invalid --lang value: $LANG_TARGET (expected en|zh|all)" >&2; usage ;;
 esac
 
@@ -296,7 +296,7 @@ Contributions are welcome! To add a tool:
 
 1. Fork this repository
 2. Add the tool to `data/tools.yaml` (the single source of truth)
-3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md` and `README.zh.md`
+3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md`
 4. Run `./scripts/validate-links.sh` to confirm links are reachable
 5. Submit a pull request
 
@@ -334,7 +334,7 @@ Tools that become 🔴 or ⚫ are moved to the [Archived / Historical](#-archive
 
 ### Scripts
 
-- `scripts/generate-readme.sh` — render README.md / README.zh.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
+- `scripts/generate-readme.sh` — render README.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
 - `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite YAML + READMEs)
 - `scripts/validate-links.sh` — verify all README links are reachable (`--timeout SECONDS`)
 - `scripts/check-links.sh` — legacy link checker
@@ -351,7 +351,7 @@ Contributions are welcome! To add a tool:
 
 1. Fork this repository
 2. Add the tool to `data/tools.yaml` (the single source of truth)
-3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md` and `README.zh.md`
+3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md`
 4. Run `./scripts/validate-links.sh` to confirm links are reachable
 5. Submit a pull request
 
@@ -389,7 +389,7 @@ Tools that become 🔴 or ⚫ are moved to the [Archived / Historical](#-archive
 
 ### Scripts
 
-- `scripts/generate-readme.sh` — render README.md / README.zh.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
+- `scripts/generate-readme.sh` — render README.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
 - `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite YAML + READMEs)
 - `scripts/validate-links.sh` — verify all README links are reachable (`--timeout SECONDS`)
 - `scripts/check-links.sh` — legacy link checker
@@ -583,7 +583,7 @@ def render_readme(lang):
 
 
 def file_for(lang):
-    return os.path.join(repo_dir, "README.md" if lang == "en" else "README.zh.md")
+    return os.path.join(repo_dir, "README.md")  # zh removed per no-Chinese policy
 
 
 langs = ["en", "zh"] if lang_target == "all" else [lang_target]

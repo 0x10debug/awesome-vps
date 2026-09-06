@@ -51,6 +51,8 @@ categories:
     intro:
       en: "Tools for the first few minutes after you get a fresh server."
       zh: "Tools for the first few minutes after you get a fresh server."
+    outro:
+      en: "After your server is initialized and hardened, deploy your applications with [compose-recipes](https://github.com/0x10debug/compose-recipes) and expose them through [network-toolkit](https://github.com/0x10debug/network-toolkit)."
 
   - id: hardening
     emoji: "🛡️"
@@ -60,6 +62,8 @@ categories:
     intro:
       en: "Tools to protect your server from attacks."
       zh: "Tools to protect your server from attacks."
+    outro:
+      en: "These tools harden individual services. For a full server baseline in one run, see [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap)."
 
   - id: network
     emoji: "🌐"
@@ -69,6 +73,8 @@ categories:
     intro:
       en: "Tools for exposing services, managing SSL, and traversing NAT."
       zh: "Tools for exposing services, managing SSL, and traversing NAT."
+    outro:
+      en: "Once your entry point is live, watch it with [monitor-stack](https://github.com/0x10debug/monitor-stack) and protect the data behind it with [backup-kit](https://github.com/0x10debug/backup-kit)."
 
   - id: deployment
     emoji: "📦"
@@ -78,6 +84,8 @@ categories:
     intro:
       en: "Tools for deploying and managing applications on your VPS."
       zh: "Tools for deploying and managing applications on your VPS."
+    outro:
+      en: "Deployment is one step of the lifecycle: initialize the host with [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap), observe the result with [monitor-stack](https://github.com/0x10debug/monitor-stack)."
 
   - id: monitoring
     emoji: "📊"
@@ -87,6 +95,8 @@ categories:
     intro:
       en: "Tools to know if your services are up and your server is healthy."
       zh: "Tools to know if your services are up and your server is healthy."
+    outro:
+      en: "Monitoring closes the loop. Back up what you observe with [backup-kit](https://github.com/0x10debug/backup-kit) and prove the host is still clean with [security-audit](https://github.com/0x10debug/security-audit)."
 
   - id: backup
     emoji: "💾"
@@ -96,6 +106,8 @@ categories:
     intro:
       en: "Tools to ensure your data survives disasters."
       zh: "Tools to ensure your data survives disasters."
+    outro:
+      en: "Backups prove their worth in recovery drills. Verify the host state after a restore with [security-audit](https://github.com/0x10debug/security-audit)."
 
   - id: ai
     emoji: "🤖"
@@ -105,6 +117,8 @@ categories:
     intro:
       en: "Tools to run AI models on your own server."
       zh: "Tools to run AI models on your own server."
+    outro:
+      en: "AI workloads need the same hygiene as any other service: initialize with [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap), monitor with [monitor-stack](https://github.com/0x10debug/monitor-stack)."
 
   - id: audit
     emoji: "🔍"

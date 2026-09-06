@@ -122,6 +122,8 @@ Tools for the first few minutes after you get a fresh server.
 - 🟡 [vpsarmor](https://github.com/flegoff/vpsarmor) - Security boilerplate for Ubuntu LTS and Debian servers. KISS philosophy, 5 layers of protection. `Shell`
 - 🟢 [linvpsliteinit](https://github.com/tonysbb/linvpsliteinit) - Lightweight VPS setup toolkit for Debian, Ubuntu, and Alpine. Init once, add components later. `Shell`
 
+After your server is initialized and hardened, deploy your applications with [compose-recipes](https://github.com/0x10debug/compose-recipes) and expose them through [network-toolkit](https://github.com/0x10debug/network-toolkit).
+
 ---
 
 ## 🛡️ Hardening & Security
@@ -135,6 +137,8 @@ Tools to protect your server from attacks.
 - 🟢 [OSSEC](https://www.ossec.net/) - Host-based intrusion detection system. Monitors logs, detects rootkits, alerts on anomalies. `C`
 - 🟢 [ssh-audit](https://github.com/jtesta/ssh-audit) - SSH server and client configuration auditor. Checks host keys, algorithms, and policy compliance. `Python`
 - 🟡 [CIS-CAT](https://learn.cisecurity.org/cis-cat-pro-quiz) - CIS Benchmark configuration assessment tool. Professional compliance scanning. `Java`
+
+These tools harden individual services. For a full server baseline in one run, see [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap).
 
 ---
 
@@ -157,6 +161,8 @@ Tools for exposing services, managing SSL, and traversing NAT.
 - 🟢 [ddns-go](https://github.com/jeessy2/ddns-go) - Automatic DDNS client with web UI. Supports Cloudflare, Aliyun, Tencent, and more. `Go`
 - 🟢 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) - Expose services without opening inbound ports. Outbound-only tunnel to Cloudflare edge. `Go`
 
+Once your entry point is live, watch it with [monitor-stack](https://github.com/0x10debug/monitor-stack) and protect the data behind it with [backup-kit](https://github.com/0x10debug/backup-kit).
+
 ---
 
 ## 📦 Deployment
@@ -174,6 +180,8 @@ Tools for deploying and managing applications on your VPS.
 - 🟢 [Umbrel](https://github.com/getumbrel/umbrel) - Home server OS with 300+ app store. Beautiful UI, designed for home servers. `TypeScript`
 - 🟢 [Runtipi](https://github.com/runtipi/runtipi) - Personal homeserver with one-command setup and one-click app installs. `TypeScript`
 
+Deployment is one step of the lifecycle: initialize the host with [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap), observe the result with [monitor-stack](https://github.com/0x10debug/monitor-stack).
+
 ---
 
 ## 📊 Monitoring
@@ -186,6 +194,8 @@ Tools to know if your services are up and your server is healthy.
 - 🟢 [Netdata](https://github.com/netdata/netdata) - Real-time infrastructure monitoring with per-second metrics and ML anomaly detection. `C`
 - 🟢 [Grafana](https://github.com/grafana/grafana) + [Prometheus](https://github.com/prometheus/prometheus) - Professional metrics and dashboards. Powerful but resource-heavy. `Go`
 - 🟢 [Nezha](https://github.com/nezhahq/nezha) - Multi-server monitoring panel popular in the Chinese VPS community. `Go`
+
+Monitoring closes the loop. Back up what you observe with [backup-kit](https://github.com/0x10debug/backup-kit) and prove the host is still clean with [security-audit](https://github.com/0x10debug/security-audit).
 
 ---
 
@@ -201,6 +211,8 @@ Tools to ensure your data survives disasters.
 - 🟢 [Duplicati](https://github.com/duplicati/duplicati) - Backup tool with web UI and multi-backend support. `C#`
 - 🟢 [rclone](https://github.com/rclone/rclone) - Cloud storage Swiss Army knife. Sync, mount, and copy across 70+ backends. `Go`
 
+Backups prove their worth in recovery drills. Verify the host state after a restore with [security-audit](https://github.com/0x10debug/security-audit).
+
 ---
 
 ## 🤖 AI Self-Hosting
@@ -213,6 +225,8 @@ Tools to run AI models on your own server.
 - 🟢 [Lobe Chat](https://github.com/lobehub/lobehub) - Beautiful multi-model AI chat with plugin ecosystem. `TypeScript`
 - 🟢 [AnythingLLM](https://github.com/Mintplex-Labs/anything-llm) - Document Q&A with vector storage and RAG. `JavaScript`
 - 🟢 [vLLM](https://github.com/vllm-project/vllm) - High-throughput LLM inference engine. For GPU servers with serious compute needs. `Python`
+
+AI workloads need the same hygiene as any other service: initialize with [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap), monitor with [monitor-stack](https://github.com/0x10debug/monitor-stack).
 
 ---
 
@@ -261,7 +275,7 @@ Contributions are welcome! To add a tool:
 
 1. Fork this repository
 2. Add the tool to `data/tools.yaml` (the single source of truth)
-3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md` and `README.zh.md`
+3. Run `./scripts/generate-readme.sh --lang all` to regenerate `README.md`
 4. Run `./scripts/validate-links.sh` to confirm links are reachable
 5. Submit a pull request
 
@@ -299,7 +313,7 @@ Tools that become 🔴 or ⚫ are moved to the [Archived / Historical](#-archive
 
 ### Scripts
 
-- `scripts/generate-readme.sh` — render README.md / README.zh.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
+- `scripts/generate-readme.sh` — render README.md from `data/tools.yaml` (`--lang en|zh|all`, `--check` to verify no drift)
 - `scripts/update-metadata.sh` — refresh activity markers from the GitHub API (`--check` to report, `--update` to rewrite YAML + READMEs)
 - `scripts/validate-links.sh` — verify all README links are reachable (`--timeout SECONDS`)
 - `scripts/check-links.sh` — legacy link checker
