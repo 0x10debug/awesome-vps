@@ -42,7 +42,7 @@ Markers are refreshed by `scripts/update-metadata.sh` (GitHub API). Run `./scrip
 | [🔧 Initialization & Setup](#initialization-setup) | 5 | First minutes after getting a fresh server |
 | [🛡️ Hardening & Security](#hardening-security) | 7 | SSH, firewall, fail2ban, baseline hardening |
 | [🌐 Network & Proxy](#network-proxy) | 14 | Reverse proxy, SSL, tunneling, DNS |
-| [📦 Deployment](#deployment) | 10 | Docker Compose recipes and app suites |
+| [📦 Deployment](#deployment) | 11 | Docker Compose recipes and app suites |
 | [📊 Monitoring](#monitoring) | 6 | Uptime, metrics, logs, alerting |
 | [💾 Backup & Recovery](#backup-recovery) | 7 | Encrypted backup, restore drills, 3-2-1 |
 | [🤖 AI Self-Hosting](#ai-self-hosting) | 6 | Ollama, Open WebUI, RAG, LiteLLM |
@@ -50,11 +50,11 @@ Markers are refreshed by `scripts/update-metadata.sh` (GitHub API). Run `./scrip
 | [🗃️ Archived / Historical](#archived-historical) | 1 | Historical tools no longer actively maintained |
 | [🧩 0x10debug Ecosystem](#0x10debug-ecosystem) | 8 | Our integrated tool suite |
 
-**Total: 69 tools** across 9 active categories (+1 archived).
+**Total: 70 tools** across 9 active categories (+1 archived).
 
 ### Activity Breakdown
 
-- 🟢 **Active**: 65
+- 🟢 **Active**: 66
 - 🟡 **Maintained**: 3
 - 🔴 **Stagnant**: 0
 - ⚫ **Archived**: 1
@@ -175,6 +175,7 @@ Tools for deploying and managing applications on your VPS.
 - 🟢 [Coolify](https://github.com/coollabsio/coolify) - Open-source self-hostable PaaS. Deploy apps and databases with 280+ one-click services. `TypeScript`
 - 🟢 [Dokploy](https://github.com/Dokploy/dokploy) - Lightweight PaaS with native Docker Compose support. Minimal footprint for small VPS. `TypeScript`
 - 🟢 [CapRover](https://github.com/caprover/caprover) - Self-hosted PaaS with Docker Swarm and large one-click app library. `TypeScript`
+- 🟢 [Peon](https://github.com/Peon-sh/Peon) - Open-source self-hostable Docker PaaS with project RBAC, audit logs, and MCP. Deploy Git apps, Compose, databases, and static sites. `TypeScript`
 - 🟢 [1Panel](https://github.com/1Panel-dev/1Panel) - Modern Linux server management panel with app store and AI management. `Go`
 - 🟢 [Portainer](https://github.com/portainer/portainer) - Docker management web UI. Visual container management for all levels. `TypeScript`
 - 🟢 [Umbrel](https://github.com/getumbrel/umbrel) - Home server OS with 300+ app store. Beautiful UI, designed for home servers. `TypeScript`
