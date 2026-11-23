@@ -43,18 +43,18 @@ Markers are refreshed by `scripts/update-metadata.sh` (GitHub API). Run `./scrip
 | [🛡️ Hardening & Security](#hardening-security) | 7 | SSH, firewall, fail2ban, baseline hardening |
 | [🌐 Network & Proxy](#network-proxy) | 14 | Reverse proxy, SSL, tunneling, DNS |
 | [📦 Deployment](#deployment) | 10 | Docker Compose recipes and app suites |
-| [📊 Monitoring](#monitoring) | 6 | Uptime, metrics, logs, alerting |
+| [📊 Monitoring](#monitoring) | 7 | Uptime, metrics, logs, alerting |
 | [💾 Backup & Recovery](#backup-recovery) | 7 | Encrypted backup, restore drills, 3-2-1 |
 | [🤖 AI Self-Hosting](#ai-self-hosting) | 6 | Ollama, Open WebUI, RAG, LiteLLM |
 | [🔍 Audit & Compliance](#audit-compliance) | 5 | CIS benchmark, Lynis, drift detection |
 | [🗃️ Archived / Historical](#archived-historical) | 1 | Historical tools no longer actively maintained |
 | [🧩 0x10debug Ecosystem](#0x10debug-ecosystem) | 8 | Our integrated tool suite |
 
-**Total: 69 tools** across 9 active categories (+1 archived).
+**Total: 70 tools** across 9 active categories (+1 archived).
 
 ### Activity Breakdown
 
-- 🟢 **Active**: 65
+- 🟢 **Active**: 66
 - 🟡 **Maintained**: 3
 - 🔴 **Stagnant**: 0
 - ⚫ **Archived**: 1
@@ -136,7 +136,7 @@ Tools to protect your server from attacks.
 - 🟢 [Lynis](https://cisofy.com/lynis/) - Security auditing tool for Unix-based systems. Reports hardening suggestions. `Shell`
 - 🟢 [OSSEC](https://www.ossec.net/) - Host-based intrusion detection system. Monitors logs, detects rootkits, alerts on anomalies. `C`
 - 🟢 [ssh-audit](https://github.com/jtesta/ssh-audit) - SSH server and client configuration auditor. Checks host keys, algorithms, and policy compliance. `Python`
-- 🟡 [CIS-CAT](https://learn.cisecurity.org/cis-cat-pro-quiz) - CIS Benchmark configuration assessment tool. Professional compliance scanning. `Java`
+- 🟡 [CIS-CAT](https://www.cisecurity.org/cybersecurity-tools/cis-cat-pro) - CIS Benchmark configuration assessment tool. Professional compliance scanning. `Java`
 
 These tools harden individual services. For a full server baseline in one run, see [vps-bootstrap](https://github.com/0x10debug/vps-bootstrap).
 
@@ -190,6 +190,7 @@ Tools to know if your services are up and your server is healthy.
 
 - 🟢 [monitor-stack](https://github.com/0x10debug/monitor-stack) - Lightweight monitoring stack: uptime, server metrics, Docker stats, and security alerts in one deploy. `Shell`
 - 🟢 [Uptime Kuma](https://github.com/louislam/uptime-kuma) - Fancy self-hosted uptime monitor with 90+ notification channels and status pages. `JavaScript`
+- 🟢 [SiteWatcher](https://github.com/NikKurkov/sitewatcher) - Self-hosted website monitoring with response-time history, TLS and domain expiry alerts, and public status pages. `Python`
 - 🟢 [Beszel](https://github.com/henrygd/beszel) - Lightweight server monitoring with historical data, Docker stats, and alerts. `Go`
 - 🟢 [Netdata](https://github.com/netdata/netdata) - Real-time infrastructure monitoring with per-second metrics and ML anomaly detection. `C`
 - 🟢 [Grafana](https://github.com/grafana/grafana) + [Prometheus](https://github.com/prometheus/prometheus) - Professional metrics and dashboards. Powerful but resource-heavy. `Go`
