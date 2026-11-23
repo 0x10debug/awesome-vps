@@ -264,7 +264,7 @@ tools:
       zh: "SSH server and client configuration auditor. Checks host keys, algorithms, and policy compliance."
 
   - name: CIS-CAT
-    url: https://learn.cisecurity.org/cis-cat-pro-quiz
+    url: https://www.cisecurity.org/cybersecurity-tools/cis-cat-pro
     category: hardening
     language: Java
     activity_status: maintained
@@ -514,6 +514,15 @@ tools:
     description:
       en: "Fancy self-hosted uptime monitor with 90+ notification channels and status pages."
       zh: "Fancy self-hosted uptime monitor with 90+ notification channels and status pages."
+
+  - name: SiteWatcher
+    url: https://github.com/NikKurkov/sitewatcher
+    category: monitoring
+    language: Python
+    activity_status: active
+    description:
+      en: "Self-hosted website monitoring with response-time history, TLS and domain expiry alerts, and public status pages."
+      zh: "可自托管的网站监控工具，提供响应时间历史、TLS 证书和域名到期提醒，以及公开状态页。"
 
   - name: Beszel
     url: https://github.com/henrygd/beszel
